@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% block title %}
+  Cadastrar Visita
+{% endblock %}
+{% block content %}
+
+<style>
+    .checkbox-container {
+      display: flex;
+
+      justify-content: center;
+    }
+
+
+</style>
+
+<div class="mt-2">
+    <h3 class="mb-5" style="color:#022F32;"><strong>Formulário de Coleta de Dados</strong></h3>
+    <form method="post">
+        {% csrf_token %}
+
+        <section class='container'>
+            <div class='row col-12 mb-4'>
+                <div class='col-12'>
+                    <h5><strong style="color: #022f32">Registro Diário</strong></h5>
+                    <hr>
+                </div>
+            </div>
+
+            <div class="row mt-4 col-12 ">
+                <div class='col-6'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong
+                                style="color: #022f32">Nome</strong></label>
+                        <div class="caixa">
+                            {{form.morador}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class='col-6'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong
+                                style="color: #022f32">Data da Visita</strong></label>
+                        <div class="caixa">
+                            {{form.data_visita}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="checkbox-container row col-12">
+                <div class="row col-12">
+                    <strong style="color: #022f32">Inspecionado</strong>
+                </div>
+                <div class="row col-12 ml-3">
+                    <div class="checkbox-item col-6">
+                        <div class="">{{form.caixa_agua}}</div>
+                      <label for="checkbox1" class="ml-2">Caixa d'água (elevado)</label>
+                    </div>
+                
+                    <div class="checkbox-item col-6">
+                        <div>{{form.depositos_moveis}}</div>
+                      <label for="checkbox2" class="ml-2">Pequenos depósitos móveis</label>
+                    </div>
+                </div>
+                <div class="row col-12 ml-3">
+                    <div class="checkbox-item col-6">
+                        <div>{{form.materiais_rodantes}}</div>
+                      <label for="checkbox1" class="ml-2">Pneus e outros materias rodantes</label>
+                    </div>
+                
+                    <div class="checkbox-item col-6">
+                        <div>{{form.depositos_naturais}}</div>
+                      <label for="checkbox2" class="ml-2">Depósitos Naturais</label>
+                    </div>
+                </div>
+                <div class="row col-12 ml-3">
+                    <div class="checkbox-item col-6">
+                        <div>{{form.outros_depositos}}</div>
+                      <label for="checkbox1" class="ml-2">Outros depósitos de armazenamento de água (baixo)</label>
+                    </div>
+                
+                    <div class="checkbox-item col-6 ">
+                        <div>{{form.depositos_fixos}}</div>
+                      <label for="checkbox2" class="ml-2">Depósitos Fixos</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row col-12 mt-2">
+                <div class='col-12'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong
+                                style="color: #022f32">No Imóvel: </strong></label>
+                        <div class="caixa">
+                            {{form.focos}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class='row col-12 mb-4 mt-2'>
+                <div class='col-12'>
+                    <h5><strong style="color: #022f32">Tratamento Focal </strong></h5>
+                    <hr>
+                </div>
+            </div>
+
+            <div class="row mt-4 col-12 ">
+                <div class='col-6'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong
+                                style="color: #022f32">Larvicida</strong></label>
+                        <div class="caixa">
+                            {{form.larvicida}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class='col-6'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong
+                                style="color: #022f32">Quantidade</strong></label>
+                        <div class="caixa">
+                            {{form.quantidade_l}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-2 col-12 ">
+                <div class='col-12'>
+                    <hr>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong style="color: #022f32">Resumo da
+                                visita</strong></label>
+                        <div>
+                            {{form.resumo_visita}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row col-12 mb-2 mt-2 mr-5">
+                <div class='col-12 mb-0 d-flex justify-content-end '>
+                    <button type="submit" class="btn" id="bt1"><strong>SALVAR</strong></button>
+                </div>
+            </div>
+        </div>
+
+
+</section>
+
+</form>
+</div>
+{% endblock %}

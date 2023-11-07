@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block title %}
+  Moradores
+{% endblock %}
+{% block content %}
+  <div class="mt-2">
+    <h3 style="color:#022F32;"><strong>Administração de Dados</strong></h3>
+    <div class="row col-12 mb-5 mt-5 d-flex justify-content-around">
+      <form method="GET" action="{% url 'filtro_moradores' %}" class="d-flex justify-content-center align-items-center w-100">
+        <div class="col-5 d-flex align-items-center justify-content-center" >
+          
+            <div style="width: 100%; border-start-start-radius: 5px;border-end-end-radius: 0px; border-end-start-radius: 5px;border-start-end-radius: 0px; height: 40px; align-items: center; display: flex; color: #022f32; background-color: #FFFFFF;">
+              <input style="height: 40px;border-start-start-radius: 5px;border-end-end-radius: 0px; border-end-start-radius: 5px;border-start-end-radius: 0px;" class="ml-2" placeholder="Procurar por morador" type="text" name="termo_morador" id="termo_morador" value="{{ termo_morador }}">
+            </div>
+            <div>
+              <button class="justify-content-center d-flex" type="submit" style="width: 50px; border-end-end-radius: 5px; border-start-end-radius: 5px; height: 40px; align-items: center; display: flex; color: #022f32; background-color: #14757B; border: none; outline: none;"><i class="bi bi-search text-white"></i></button>
+            </div>
+            
+        
+        </div>
+        <div class="col-4 d-flex align-items-center justify-content-center">
+          <div class="d-flex align-items-center justify-content-center" style="width: 50%; border-radius: 5px; height: 40px; align-items: center; display: flex; color: #022f32; background-color: #FFFFFF;">
+            <select name="ordenacao" id="ordenacao" style="border: none; outline: none;">
+              <option>Selecionar</option>
+              <option value="mais_recente" {% if ordenacao == 'mais_recente' %}selected{% endif %}>Mais Recente</option>
+              <option value="mais_antigo" {% if ordenacao == 'mais_antigo' %}selected{% endif %}>Mais Antigo</option>
+          </select>
+          </div>
+            
+        </div>
+        <div class="col-3 d-flex align-items-center justify-content-center">
+          <div class="" style="">
+            <a href="#" ><button class="btn " id="bt3" type="submit"><strong>Aplicar</strong></button></a>
+            <a href="{% url 'imovel_listar' %}" class="btn " id="bt2"><strong>Limpar</strong></a>
+          </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-between align-items-center mb-2">
+      <div>
+        <h6 style="color:#022F32;"><strong>Imóveis</strong></h6>
+      </div>
+
+      <div>
+        <a href="{% url 'imovel_criar' %}" class="btn" id="bt1"><strong>Cadastrar imóvel</strong></a>
+        <a href="{% url 'morador_criar' %}" class="btn" id="bt1"><strong>Cadastrar morador</strong></a>
+      </div>
+    </div>
+    
+    <div class="table-responsive">
+      <table class="table table-striped table-borderless">
+        <thead>
+          <tr class="text-center">
+            <th scope="col">N°</th>
+            <th scope="col">Residente Principal</th>
+            <th scope="col">Bairro</th>
+            <th scope="col">Rua</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for morador in moradores %}
+            <tr class="text-center">
+              <td>{{ morador.numero }}</td>
+              <td>
+                <a style="text-decoration: none; color:#022F32" href="{% url 'visitas' %}">{{ morador.morador.nome }}</a>
+              </td>
+              <td>{{ morador.bairro }}</td>
+              <td>{{ morador.rua.nome }}</td>
+              <td>
+                <div class="d-flex justify-content-around">
+                  <a href="{% url 'imovel_remover' morador.pk %}"><i class="bi bi-trash3-fill" id="tableicon"></i></a>
+                  <a href="{% url 'imovel_editar' morador.pk %}"><i class="bi bi-eye-fill" id="tableicon"></i></a>
+                  <a href="{% url 'visitas' %}"><i class="bi bi-clipboard-plus-fill" id="tableicon"></i></a>
+                </div>
+              </td>
+            </tr>
+            {% empty %}
+            <tr class="text-center">
+              <td colspan="5">
+                <p>Não existem reservas cadastradas.</p>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}

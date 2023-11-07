@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% block title %}
+  Cadastrar Visita
+{% endblock %}
+{% block content %}
+
+<style>
+    .checkbox-container {
+      display: flex;
+
+      justify-content: center;
+    }
+
+
+</style>
+
+<div class="mt-2">
+    <h3 class="mb-5" style="color:#022F32;"><strong>Formulário de Coleta de Dados</strong></h3>
+    <form method="post">
+        {% csrf_token %}
+        <section class='container'>
+            <div class='row col-12 mb-4'>
+                <div class='col-12'>
+                    <h5><strong style="color: #022f32">Registro Diário</strong></h5>
+                    <hr>
+                </div>
+            </div>
+
+            <div class="row mt-4 col-12 ">
+                <div class='col-6'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong
+                                style="color: #022f32">Nome</strong></label>
+                        <div class="caixa">
+                            {{form.morador}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class='col-6'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong
+                                style="color: #022f32">Data da Visita</strong></label>
+                        <div class="caixa">
+                            {{form.data_visita}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row col-12 mt-2">
+                <div class='col-12'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong style="color: #022f32">Motivo da
+                                Visita</strong></label>
+                        <div class="caixa">
+                            {{form.motivo_visita}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row col-12 mt-2">
+                <div class='col-12'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong style="color: #022f32">Quantas pessoas
+                                moram na residência?</strong></label>
+                        <div class="caixa">
+                            {{form.quantidade_pessoas}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row col-12 mt-2">
+                <div class='col-12'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong style="color: #022f32">Há alguma pessoa
+                                doente atualmente na residência?</strong></label>
+                        <div class="caixa">
+                            {{form.pessoa_doente}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row col-12 mt-2">
+                <div class='col-12'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong style="color: #022f32">Das pessoas
+                                presentes na casa, quantas apresentaram algum sintoma de
+                                arbovirose?</strong></label>
+                        <div class="caixa">
+                            {{form.pessoa_sintoma}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row col-12 mt-2">
+                <div class='col-12'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong style="color: #022f32">Quais foram os
+                                sintomas?</strong></label>
+                        <div class="caixa">
+                            {{form.sintomas}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="checkbox-container row col-12">
+                <div class="row col-12">
+                    <strong style="color: #022f32">Possível Caso de:</strong>
+                </div>
+                <div class="row col-12 ml-3">
+                    <div class="checkbox-item col-6">
+                        <div class="">{{form.dengue}}</div>
+                      <label for="checkbox1" class="ml-2">Dengue</label>
+                    </div>
+                
+                    <div class="checkbox-item col-6">
+                        <div>{{form.chikungunya}}</div>
+                      <label for="checkbox2" class="ml-2">Chikungunya</label>
+                    </div>
+                </div>
+                <div class="row col-12 ml-3">
+                    <div class="checkbox-item col-6">
+                        <div>{{form.dengue_hemorragica}}</div>
+                      <label for="checkbox1" class="ml-2">Dengue Hemorrágica</label>
+                    </div>
+                
+                    <div class="checkbox-item col-6">
+                        <div>{{form.zika}}</div>
+                      <label for="checkbox2" class="ml-2">Zika</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-2 col-12 ">
+                <div class='col-12'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong style="color: #022f32">Descrição</strong></label>
+                        <div>
+                            {{form.descricao}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row col-12 mb-2 mt-2 mr-5">
+                <div class='col-12 mb-0 d-flex justify-content-end '>
+                    <button type="submit" class="btn" id="bt1"><strong>SALVAR</strong></button>
+                </div>
+            </div>
+        </section>
+
+    </form>
+</div>
+
+{% endblock %}

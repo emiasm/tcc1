@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% block title %}
+  Cadastrar Imóvel
+{% endblock %}
+{% block content %}
+<div class="mt-2">
+    <h3 class="mb-5" style="color:#022F32;"><strong>Formulário de Coleta de Dados</strong></h3>
+    <form method="post">
+        {% csrf_token %}
+        <section class='container' >
+            <div class='row col-12 mb-4'>
+                <div class='col-12'>
+                    <h5><strong style="color: #022f32">Cadastrar novo imóvel</strong></h5>
+                    <hr>
+                </div>
+            </div>
+
+            <div class="row col-12 mb-2 mt-2">
+                <div class='col-12'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong style="color: #022f32">Tipo de
+                                Propriedade</strong></label>
+                        <div class="caixa">
+                            {{form.tipo_propriedade}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row col-12 mb-2 mt-2">
+                <div class='col-12'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong style="color: #022f32">Residente
+                                Principal</strong></label>
+                        <div class="caixa">
+                            {{form.morador}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row col-12 mb-2 mt-2">
+                <div class='col-12'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong
+                                style="color: #022f32">Rua</strong></label>
+                        <div class="caixa">
+                            {{form.rua}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row col-12 mb-2 mt-2">
+                <div class='col-12'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong
+                                style="color: #022f32">Bairro</strong></label>
+                        <div class="caixa">
+                            {{form.bairro}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-2 col-12 ">
+                <div class='col-6'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong
+                                style="color: #022f32">N°</strong></label>
+                        <div class="caixa">
+                            {{form.numero}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class='col-6'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong style="color: #022f32">Ponto de
+                                Referência</strong></label>
+                        <div class="caixa">
+                            {{form.referencia}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row col-12 mb-2 mt-2">
+                <div class='col-12'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong
+                                style="color: #022f32">Tipo de Reservatório</strong></label>
+                        <div class="caixa">
+                            {{form.reservatorio}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row col-12 mb-2 mt-2">
+                <div class='col-12'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong
+                                style="color: #022f32">Quantidade</strong></label>
+                        <div class="caixa">
+                            {{form.quantidade}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row col-12 mb-2 mt-2 mr-5">
+                <div class='col-12 mb-0 d-flex justify-content-end '>
+                    <button type="submit" class="btn" id="bt1"><strong>SALVAR</strong></button>
+                </div>
+            </div>
+        </section>
+
+    </form>
+</div>
+{% endblock %}

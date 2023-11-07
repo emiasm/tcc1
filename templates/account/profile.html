@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% block title %}
+  Perfil
+{% endblock %}
+{% block content %}
+{% load static %}
+
+<div class="mt-2">
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="mt-2">
+            <h3 class="" style="color:#022F32;"><strong>Emiliana Iasmin Maia de Queiroz
+                    (701.069.664-98)</strong></h3>
+            <p><strong>Administrador</strong></p>
+        </div>
+
+
+        <div>
+            <a href="#" class="btn" id="bt1"><strong>Editar</strong></a>
+        </div>
+
+
+    </div>
+
+    <div class='row col-12 mb-4'>
+        <div class='col-12'>
+            <h5><strong style="color: #022f32">Dados Gerais</strong></h5>
+        </div>
+    </div>
+
+    <div class="row col-12 d-flex justify-content-center align-items-center mb-4">
+        <div class="col-4">
+            <div class="circle2">
+                <img class="img img-fluid" src="{% static 'img\user.jpg' %}">
+            </div>
+        </div>
+        <div class="col-8 ">
+            <div class="row col-12 mb-5">
+                <div class="col-6 m-auto">
+                    <div><strong style="color: #022f32">Nome:</strong>
+                        <p class="">Emiliana Iasmin Maia de Queiroz
+                        </p>
+                        <hr style="color: #022f32; font-size: 40px;">
+                    </div>
+                </div>
+                <div class="col-6">
+
+                    <div><strong style="color: #022f32">CPF:</strong>
+                        <p class="">701.069.664-98
+                        </p>
+                        <hr style="color: #022f32; font-size: 40px;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row col-12">
+                <div class="col-6">
+                    <div><strong style="color: #022f32">Telefone:</strong>
+                        <p class="">(84) 9876-5642
+                        </p>
+                        <hr style="color: #022f32; font-size: 40px;">
+                    </div>
+                </div>
+                <div class="col-6">
+
+                    <div><strong style="color: #022f32">Email:</strong>
+                        <p class="">emiliana.queiroz@escolar.ifrn.edu.br
+                        </p>
+                        <hr style="color: #022f32; font-size: 40px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class='row col-12 mb-4'>
+        <div class='col-12'>
+            <h5><strong style="color: #022f32">Endereço</strong></h5>
+        </div>
+    </div>
+
+    <div class="row col-12 d-flex justify-content-between mb-4 ml-3">
+        <div class="row col-12">
+            <div class="col-6">
+                <div><strong style="color: #022f32">CEP:</strong>
+                    <p class="">70567-898
+                    </p>
+                    <hr style="color: #022f32; font-size: 40px;">
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div><strong style="color: #022f32">Logradouro:</strong>
+                    <p class=""> Rua Fenelon de Paiva
+                    </p>
+                    <hr style="color: #022f32; font-size: 40px;">
+                </div>
+            </div>
+        </div>
+
+        <div class="row col-12">
+            <div class="col-6">
+                <div><strong style="color: #022f32">Número:</strong>
+                    <p class="">705
+                    </p>
+                    <hr style="color: #022f32; font-size: 40px;">
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div><strong style="color: #022f32">Complemento:</strong>
+                    <p class=""> Casa
+                    </p>
+                    <hr style="color: #022f32; font-size: 40px;">
+                </div>
+            </div>
+        </div>
+
+        <div class="row col-12">
+            <div class="col-6">
+                <div><strong style="color: #022f32">Bairro:</strong>
+                    <p class="">Centro
+                    </p>
+                    <hr style="color: #022f32; font-size: 40px;">
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div><strong style="color: #022f32">Cidade:</strong>
+                    <p class=""> São Franciso do Oeste
+                    </p>
+                    <hr style="color: #022f32; font-size: 40px;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-end align-items-center mb-2">
+        <div>
+            <a href="form_imovel.html" class="btn" id="bt1"><strong>ALTERAR SENHA</strong></a>
+            <a href="form_morador.html" class="btn" id="bt1"><strong>SAIR</strong></a>
+        </div>
+    </div>
+
+{% endblock %}

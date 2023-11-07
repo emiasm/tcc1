@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% block title %}
+  Cadastrar Morador
+{% endblock %}
+{% block content %}
+
+<div class="mt-2">
+    <h3 class="mb-5" style="color:#022F32;"><strong>Formulário de Coleta de Dados</strong></h3>
+    <form method="post">
+        {% csrf_token %}
+        <section class='container'>
+            <div class='row col-12 mb-4'>
+                <div class='col-12'>
+                    <h5><strong style="color: #022f32">Cadastrar novo morador</strong></h5>
+                    <hr>
+                </div>
+            </div>
+
+            <div class="row col-12 mb-2 mt-2">
+                <div class='col-12'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong
+                                style="color: #022f32">Nome</strong></label>
+                        <div class="caixa">
+                            {{form.nome}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-2 col-12 ">
+                <div class='col-6'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong
+                                style="color: #022f32">Email</strong></label>
+                        <div class="caixa">
+                            {{form.email}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class='col-6'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong style="color: #022f32">Data de
+                                Nascimento</strong></label>
+                        <div class="caixa">
+                            {{form.data_nascimento}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-2 col-12 ">
+                <div class='col-6'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong
+                                style="color: #022f32">SUS</strong></label>
+                        <div class="caixa">
+                            {{form.sus}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class='col-6'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong
+                                style="color: #022f32">CPF</strong></label>
+                        <div class="caixa">
+                            {{form.cpf}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-2 col-12 ">
+                <div class='col-6'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong
+                                style="color: #022f32">Gênero</strong></label>
+                        <div class="caixa">
+                            {{form.genero}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class='col-6'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong
+                                style="color: #022f32">Telefone</strong></label>
+                        <div class="caixa">
+                            {{form.telefone}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% comment %} <div class="row col-12 mb-2 mt-2">
+                <div class='col-12'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong
+                                style="color: #022f32">Imóvel</strong></label>
+                        <div class="caixa">
+                        </div>
+                    </div>
+                </div>
+            </div> {% endcomment %}
+
+            <div class="row col-12 mb-2 mt-2 mr-5">
+                <div class='col-12 mb-0 d-flex justify-content-end '>
+                    <button type="submit" class="btn" id="bt1"><strong>SALVAR</strong></button>
+                </div>
+            </div>
+        </section>
+
+    </form>
+</div>
+{% endblock %}
