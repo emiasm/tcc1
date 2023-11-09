@@ -7,4 +7,5 @@ class User(AbstractUser):
     name = models.CharField(_("Name of User"), blank=True, max_length=255)
     first_name = None  # type: ignore
     last_name = None  # type: ignore
+    data_adicao = models.DateTimeField(auto_now_add=True)
     

@@ -8,7 +8,7 @@ class HomeView(LoginRequiredMixin, generic.TemplateView):
     template_name = "pages/home.html"
 
 class ProfileView(LoginRequiredMixin, generic.TemplateView):
-    template_name = "account/profile.html"
+    template_name = "registration/profile.html"
 
 class VisitasView(LoginRequiredMixin, generic.TemplateView):
     template_name = "pages/visitas.html"
