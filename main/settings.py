@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'rua',
     'visita1',
     'visita2',
+    'active_link',
     
 ]
 

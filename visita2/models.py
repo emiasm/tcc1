@@ -26,6 +26,6 @@ class Visita2 (models.Model):
 
     descricao = models.TextField()
     data_adicao = models.DateTimeField(auto_now_add=True)
-
+    
     def __str__(self):
         return f"{self.morador}"

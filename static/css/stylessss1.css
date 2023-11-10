@@ -59,7 +59,7 @@ ul li.ativo {
     color: #ffffff;
 }
 
-ul li.active a:visited {
+ul li.ativo a:visited {
     background-color: #ffffff;
     border-start-start-radius: 25px;
     border-end-start-radius: 25px;
@@ -67,7 +67,29 @@ ul li.active a:visited {
 
 }
 
-ul li.active a:hover {
+ul li.ativo a:hover {
+    background-color: #ffffff;
+    border-start-start-radius: 25px;
+    border-end-start-radius: 25px;
+    color: #022F32;
+}
+
+ul li.activo {
+    background-color: #ffffff;
+    border-start-start-radius: 25px;
+    border-end-start-radius: 25px;
+    color: #ffffff;
+}
+
+ul li.activo a:visited {
+    background-color: #ffffff;
+    border-start-start-radius: 25px;
+    border-end-start-radius: 25px;
+    color: #022F32;
+
+}
+
+ul li.activo a:hover {
     background-color: #ffffff;
     border-start-start-radius: 25px;
     border-end-start-radius: 25px;
@@ -140,7 +162,7 @@ h6 {
     background-color: #14757B;
     border-radius: 50px;
     color: white;
-    width: 200px;
+    width: 180px;
 }
 
 #bt2,

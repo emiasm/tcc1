@@ -67,9 +67,9 @@
               <td>{{ morador.bairro }}</td>
               <td>{{ morador.rua.nome }}</td>
               <td>
-                <div class="d-flex justify-content-around">
-                  <a href="{% url 'imovel_remover' morador.pk %}"><i class="bi bi-trash3-fill" id="tableicon"></i></a>
-                  <a href="{% url 'imovel_editar' morador.pk %}"><i class="bi bi-eye-fill" id="tableicon"></i></a>
+                <div class="d-flex justify-content-center">
+                  <a href="{% url 'imovel_remover' morador.pk %}" class="mr-3"><i class="bi bi-trash3-fill" id="tableicon"></i></a>
+                  <a href="{% url 'imovel_editar' morador.pk %}" class="mr-3"><i class="bi bi-eye-fill" id="tableicon"></i></a>
                   <a href="{% url 'visitas' %}"><i class="bi bi-clipboard-plus-fill" id="tableicon"></i></a>
                 </div>
               </td>

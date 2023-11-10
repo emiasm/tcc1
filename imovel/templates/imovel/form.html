@@ -2,10 +2,11 @@
 {% block title %}
   Cadastrar Imóvel
 {% endblock %}
+
 {% block content %}
 <div class="mt-2">
     <h3 class="mb-5" style="color:#022F32;"><strong>Formulário de Coleta de Dados</strong></h3>
-    <form method="post">
+    <form method="post" >
         {% csrf_token %}
         <section class='container' >
             <div class='row col-12 mb-4'>

@@ -1,4 +1,5 @@
 {% load static %}
+{% load active_link_tags %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +7,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="{% static 'css/styless.css' %}">
+  <link rel="stylesheet" href="{% static 'css/stylessss1.css' %}">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
   <title>
@@ -29,45 +30,46 @@
         </div>
         <span class="user ml-3">Emiliana</span>
       </div>
-        <ul class="mt-5 ml-5 nav-list">
-            <li class="item-menu active ativo">
-              <a href="{% url 'index' %}">
-                <span class="icon"><i class="bi bi-house-fill"></i></span>
-                <span class="txt-link">Início</span>
-              </a>
-            </li>
-            <li class="item-menu">
-              <a href="#">
-                <span class="icon"><i class="bi bi-clipboard-plus-fill"></i></span>
-                <span class="txt-link">Dados</span>
-              </a>
-            </li>
-            <li class="item-menu">
-              <a href="{% url 'imovel_listar' %}">
-                <span class="icon"><i class="bi bi-geo-alt-fill"></i></span>
-                <span class="txt-link">Moradores</span>
-              </a>
-            </li>
-            <li class="item-menu">
-              <a href="{% url 'logradouro' %}">
-                <span class="icon"><i class="bi bi-house-add-fill"></i></span>
-                <span class="txt-link">Logradouro</span>
-              </a>
-            </li>
-            <li class="item-menu">
-              <a href="{% url 'users_listar' %}">
-                <span class="icon"><i class="bi bi-person-fill-add"></i></span>
-                <span class="txt-link">Servidores</span>
-              </a>
-            </li>
-            <li class="item-menu">
-              <a href="{% url 'account_profile' %}">
-                <span class="icon"><i class="bi bi-person-fill"></i></span>
-                <span class="txt-link">Perfil</span>
-              </a>
-            </li>
+      <ul class="mt-5 ml-5 nav-list">
           
-        </ul>
+        <li class="item-menu {% active_link 'index' 'ativo' strict=True %}">
+          <a href="{% url 'index' %}">
+            <span class="icon"><i class="bi bi-house-fill"></i></span>
+            <span class="txt-link">Início</span>
+          </a>
+        </li>
+        <li class="item-menu {% active_link 'visitas || visita1_listar || visita2_listar || visita1_criar || visita2_criar' 'ativo' %}" >
+          <a href="{% url 'visitas' %}">
+            <span class="icon"><i class="bi bi-clipboard-plus-fill"></i></span>
+            <span class="txt-link">Dados</span>
+          </a>
+        </li>
+        <li class="item-menu {% active_link 'imovel_listar || imovel_criar || imovel_editar || filtro_moradores || morador_criar' 'ativo' %}">
+          <a href="{% url 'imovel_listar' %}">
+            <span class="icon"><i class="bi bi-geo-alt-fill"></i></span>
+            <span class="txt-link">Moradores</span>
+          </a>
+        </li>
+        <li class="item-menu {% active_link 'logradouro || bairro_listar || bairro_criar || bairro_editar || filtro_bairros || rua_listar || rua_criar || rua_editar || filtro_ruas ' 'ativo' %}">
+          <a href="{% url 'logradouro' %}">
+            <span class="icon"><i class="bi bi-house-add-fill"></i></span>
+            <span class="txt-link">Logradouro</span>
+          </a>
+        </li>
+        <li class="item-menu {% active_link 'users_listar || filtro_users' 'ativo' %}">
+          <a href="{% url 'users_listar' %}">
+            <span class="icon"><i class="bi bi-person-fill-add"></i></span>
+            <span class="txt-link">Servidores</span>
+          </a>
+        </li>
+        <li class="item-menu {% active_link 'account_profile' 'ativo' %">
+          <a href="{% url 'account_profile' %}">
+            <span class="icon"><i class="bi bi-person-fill"></i></span>
+            <span class="txt-link">Perfil</span>
+          </a>
+        </li>
+      
+      </ul>
 
       
     </nav>
@@ -114,7 +116,7 @@
     {% endblock %}
 
 
-  <script src="{% static 'js/menu.js' %}"></script>
+  <script src="{% static 'js/menuuu.js' %}"></script>
 
 </body>
 

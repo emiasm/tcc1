@@ -61,8 +61,7 @@
               <td>
                 <div class="d-flex justify-content-center">
                   <a href="{% url 'bairro_remover' pk=object.pk %}" class="mr-3"><i class="bi bi-trash3-fill" id="tableicon"></i></a>
-                  <a href="{% url 'bairro_detalhe' pk=object.pk %}" class="mr-3"><i class="bi bi-search" id="tableicon"></i></a>
-                  <a href=""><i class="bi bi-plus-lg" id="tableicon"></i></a>
+                  <a href="{% url 'bairro_editar' pk=object.pk %}"><i class="bi bi-eye-fill" id="tableicon"></i></a>
                 </div>
               </td>
             </tr>
