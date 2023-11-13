@@ -6,9 +6,18 @@ from users.permissions import AdminPermission
 from .forms import Visita1Form
 from .models import Visita1
 
-class Visita1ListView(LoginRequiredMixin, generic.ListView):
+from .filters import Visita1Filter
+from .forms import Visita1Form
+from .models import Visita1
+
+from django_filters.views import FilterView
+
+
+
+class Visita1ListView(LoginRequiredMixin, FilterView):
     model = Visita1
     # paginate_by=3
+    filterset_class = Visita1Filter
     template_name = "visita1/visitas.html"
 
 class Visita1DetailView(LoginRequiredMixin, generic.DetailView):

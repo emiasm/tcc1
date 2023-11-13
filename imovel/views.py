@@ -7,11 +7,32 @@ from .forms import ImovelForm
 from .models import Imovel
 from django.shortcuts import render
 
-class ImovelListView(LoginRequiredMixin, generic.ListView):
+
+from django.urls import reverse_lazy
+from django.views import generic
+
+from django.contrib.messages import views
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+
+from django_filters.views import FilterView
+from .filters import ImovelFilter
+
+
+
+from .filters import ImovelFilter
+from .forms import ImovelForm
+from .models import Imovel
+
+
+class ImovelListView(LoginRequiredMixin,FilterView):
     model = Imovel
     # paginate_by=3
+    filterset_class = ImovelFilter
     template_name = "imovel/imoveis.html"
+   
 
+   
 class ImovelDetailView(LoginRequiredMixin, generic.DetailView):
     model = Imovel
     template_name = "imovel/imovel_detalhe.html"

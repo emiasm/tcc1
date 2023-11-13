@@ -4,6 +4,40 @@
 {% endblock %}
 
 {% block content %}
+
+
+
+<form method="GET" action="{% url 'imovel_listar' %}" autocomplete="off">
+  <section class="form container-fluid p-5x">
+    <div class="row">
+      <div class="col-12 mx-0 mt-3">
+       
+        <span class="br-divider sm mt-3"></span>
+      </div>
+      <div class="col-12 mx-0 mt-3">
+        <div class="br-input input-inline">
+          <div class="input-content">
+            <div class="input-group">
+              {{ filter.form.morador.label_tag }}
+              {{ filter.form.morador }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 mx-0 mt-3">
+        <button class="br-button primary rounder-md flex-grow-1 mb-1" type="submit" name="filtrar">
+          <i class="fa fa-filter"></i>
+         
+        </button>
+      </div>
+    </div>
+  </section>
+</form>
+
+
+
+<div class="mt-5">
+
   <div class="mt-2">
     <h3 style="color:#022F32;"><strong>Administração de Dados</strong></h3>
     <div class="row col-12 mb-5 mt-5 d-flex justify-content-around">

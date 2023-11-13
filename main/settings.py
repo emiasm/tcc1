@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'rua',
     'visita1',
     'visita2',
+    'django_filters',
     'active_link',
     
 ]
