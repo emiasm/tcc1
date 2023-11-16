@@ -5,31 +5,36 @@
 {% block content %}
   <div class="mt-2">
     <h3 style="color:#022F32;"><strong>Administração de Dados</strong></h3>
-    <div class="row col-12 mb-5 mt-5 d-flex justify-content-center">
-      <div class="col-5 d-flex align-items-center justify-content-center">
-        <div class="" style="width: 100%; border-start-start-radius: 5px; border-end-start-radius: 5px; height: 40px; align-items: center; display: flex; color: #022f32; background-color: #FFFFFF;">
-          <p class="ml-2 mt-3">Procurar por morador</p>
+    <div class="row col-12 mb-5 mt-5 d-flex justify-content-around">
+      <form method="GET" action="{% url 'visita2_listar' %}" autocomplete="off" class="d-flex justify-content-center align-items-center w-100">
+        <div class="col-5 d-flex align-items-center justify-content-center" >
+          
+            <div style="width: 100%; border-start-start-radius: 5px;border-end-end-radius: 0px; border-end-start-radius: 5px;border-start-end-radius: 0px; height: 40px; align-items: center; display: flex; color: #022f32; background-color: #FFFFFF;">
+              {{ filter.form.morador }}
+            </div>
+            <div>
+              <button class="justify-content-center d-flex" type="submit" style="width: 50px; border-end-end-radius: 5px; border-start-end-radius: 5px; height: 40px; align-items: center; display: flex; color: #022f32; background-color: #14757B; border: none; outline: none;"><i class="bi bi-search text-white"></i></button>
+            </div>
+            
+        
         </div>
-        <div class="justify-content-center" style="width: 50px; border-end-end-radius: 5px; border-start-end-radius: 5px; height: 40px; align-items: center; display: flex; color: #022f32; background-color: #14757B;">
-          <i class="bi bi-search text-white"></i>
+        <div class="col-4 d-flex align-items-center justify-content-center">
+          <div class="d-flex align-items-center justify-content-center" style="width: 50%; border-radius: 5px; height: 40px; align-items: center; display: flex; color: #022f32; background-color: #FFFFFF;">
+            <select name="ordenacao" id="ordenacao" style="border: none; outline: none;">
+              <option>Selecionar</option>
+              <option value="mais_recente" {% if ordenacao == 'mais_recente' %}selected{% endif %}>Mais Recente</option>
+              <option value="mais_antigo" {% if ordenacao == 'mais_antigo' %}selected{% endif %}>Mais Antigo</option>
+          </select>
+          </div>
+            
         </div>
-      </div>
-
-      <div class="col-4 d-flex align-items-center justify-content-center">
-        <div class="" style="width: 50%; border-start-start-radius: 5px; border-end-start-radius: 5px; height: 40px; align-items: center; display: flex; color: #022f32; background-color: #FFFFFF;">
-          <p class="ml-2 mt-3">Selecionar</p>
+        <div class="col-3 d-flex align-items-center justify-content-center">
+          <div class="" style="">
+            <a href="#" ><button class="btn " id="bt3" type="submit"><strong>Aplicar</strong></button></a>
+            <a href="{% url 'imovel_listar' %}" class="btn " id="bt2"><strong>Limpar</strong></a>
+          </div>
         </div>
-        <div class="justify-content-center" style="width: 50px; border-end-end-radius: 5px; border-start-end-radius: 5px; height: 40px; align-items: center; display: flex; color: #022f32; background-color: #FFFFFF;">
-          <i class="bi bi-chevron-down"></i>
-        </div>
-      </div>
-      <div class="col-3 d-flex align-items-center justify-content-end">
-        <div class="mb-1" style="font-size: 15px;">
-          <a href="#" class="btn mb-1 mt-1 ml-1" id="bt3"><strong>Aplicar</strong>
-        </a>
-          <a href="#" class="btn mb-1 mt-1 ml-1" id="bt2"><strong>Limpar</strong></a>
-        </div>
-      </div>
+      </form>
     </div>
     <div class="d-flex justify-content-between align-items-center mb-2">
       <div>
@@ -37,7 +42,7 @@
       </div>
 
       <div>
-        <a href="{% url 'visita2_criar' %}" class="btn" id="bt1"><strong>Cadastrar Visita</strong></a>
+        <a href="{% url 'visita2_criar' %}" class="btn" id="bt1"><strong>Cadastrar visita</strong></a>
       </div>
     </div>
     <div class="table-responsive">

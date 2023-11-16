@@ -43,7 +43,7 @@
       </div>
 
       <div>
-        <a href="{% url 'users_criar' %}" class="btn" id="bt1" style="width: 180px;"><strong>Cadastrar Servidor</strong></a>
+        <a href="{% url 'users_criar' %}" class="btn" id="bt1" style="width: 180px;"><strong>Cadastrar servidor</strong></a>
       </div>
     </div>
     <div class="table-responsive">
@@ -63,7 +63,7 @@
               <td>
                 <div class="d-flex justify-content-center">
                   <a href="{% url 'users_remover' user.pk %}" class="mr-3"><i class="bi bi-trash3-fill" id="tableicon"></i></a>
-                  <a href=""><i class="bi bi-plus-lg" id="tableicon"></i></a>
+                  <a href="{% url 'users_editar' user.pk %}"><i class="bi bi-eye-fill" id="tableicon"></i></a>
                 </div>
               </td>
             </tr>

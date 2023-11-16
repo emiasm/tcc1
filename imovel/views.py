@@ -6,10 +6,13 @@ from users.permissions import AdminPermission
 from .forms import ImovelForm
 from .models import Imovel
 from django.shortcuts import render
+from django_filters.views import FilterView
+from .filters import ImovelFilter
 
-class ImovelListView(LoginRequiredMixin, generic.ListView):
+class ImovelListView(LoginRequiredMixin, FilterView):
     model = Imovel
     # paginate_by=3
+    filterset_class = ImovelFilter
     template_name = "imovel/imoveis.html"
 
 class ImovelDetailView(LoginRequiredMixin, generic.DetailView):

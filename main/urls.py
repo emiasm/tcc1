@@ -17,8 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.views import LoginView,LogoutView
-from users.views import UserCreateView,UsersListView,UsersDeleteView,filtro_users
-from core.views import HomeView, ProfileView, VisitasView, LogradouroView
+from users.views import UserCreateView,UsersListView,UsersDeleteView,filtro_users,ProfileView,ThirdUserUpdateView,UpdateView
+from core.views import HomeView, VisitasView, LogradouroView
 from imovel.views import ImovelCreateView,ImovelDeleteView,ImovelDetailView,ImovelListView, ImovelUpdateView,filtro_moradores
 from visita1.views import Visita1CreateView,Visita1DeleteView,Visita1DetailView,Visita1ListView,Visita1UpdateView
 from morador.views import MoradorCreateView, MoradorDeleteView, MoradorDetailView, MoradorListView,MoradorUpdateView
@@ -26,17 +26,22 @@ from visita2.views import Visita2CreateView,Visita2DeleteView,Visita2DetailView,
 from bairro.views import BairroCreateView,BairroDeleteView,BairroDetailView,BairroListView,BairroUpdateView,filtro_bairros
 from rua.views import RuaCreateView,RuaDeleteView,RuaDetailView,RuaListView,RuaUpdateView,filtro_rua
 
+from django.conf.urls.static import static
+from django.conf import settings
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', HomeView.as_view(), name='index'),
     path('visitas/', VisitasView.as_view(), name='visitas'),
     path('logradouro/', LogradouroView.as_view(), name='logradouro'),
-    path('profile/', ProfileView.as_view(), name='account_profile'),
+    path('users/profile/', ProfileView.as_view(), name='users_profile'),
 
-    path('users/', UserCreateView.as_view(), name='users_criar'),
+    path('users/criar', UserCreateView.as_view(), name='users_criar'),
     path('users/listar/', UsersListView.as_view(), name='users_listar'),
     path('users/login/', LoginView.as_view(), name='login'),
     path('users/logout/', LogoutView.as_view(), name='logout'),
+    path("users/update/", UpdateView.as_view(), name="users_update"),
+    path("users/editar/<int:pk>/", ThirdUserUpdateView.as_view(), name="users_editar"),
     path('users/remover/<int:pk>/',UsersDeleteView.as_view(), name='users_remover'),
     path('filtro_users/', filtro_users, name='filtro_users'),
 
@@ -79,4 +84,5 @@ urlpatterns = [
     path('rua/remover/<int:pk>/',RuaDeleteView.as_view(), name='rua_remover'),
     path('rua/listar/', RuaListView.as_view(), name='rua_listar'),
     path('filtro_ruas/', filtro_rua, name='filtro_ruas'),
-]
+
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

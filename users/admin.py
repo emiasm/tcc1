@@ -12,7 +12,7 @@ class UserAdmin(auth_admin.UserAdmin):
 
     fieldsets = (
         (None, {"fields": ("username", "password")}),
-        (_("Personal info"), {"fields": ("name", "email")}),
+        (_("Personal info"), {"fields": ("name", "email","cpf","telefone","cep","logradouro","numero","complemento","bairro","cidade","cargo","foto_perfil")}),
         (
             _("Permissions"),
             {

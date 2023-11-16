@@ -11,6 +11,8 @@ class MoradorListView(LoginRequiredMixin, generic.ListView):
     model = Morador
     # paginate_by=3
     template_name = "morador/moradores.html"
+    
+    
 
 class MoradorDetailView(LoginRequiredMixin, generic.DetailView):
     model = Morador

@@ -11,6 +11,7 @@ class BairroListView(LoginRequiredMixin, generic.ListView):
   model = Bairro
   # paginate_by=3
   template_name = "bairro/bairros.html"
+  
 
 class BairroDetailView(LoginRequiredMixin, generic.DetailView):
   model = Bairro
@@ -34,15 +35,6 @@ class BairroUpdateView(LoginRequiredMixin, views.SuccessMessageMixin, generic.Up
   success_url = reverse_lazy("bairro_listar")
   success_message= 'Alterações salvas!'
   template_name = "bairro/form.html"
-
-# def filtro_bairros(request):
-#     termo_bairro = request.GET.get('termo_bairro', '')
-#     bairros = Bairro.objects.order_by('nome')
-
-#     if termo_bairro:
-#         bairros = bairros.filter(nome__icontains=termo_bairro)
-
-#     return render(request, 'bairro/filter_bairro.html', {'bairros': bairros, 'termo_bairro': termo_bairro})
 
 def filtro_bairros(request):
     termo_bairro = request.GET.get('termo_bairro', '')

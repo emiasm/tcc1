@@ -42,7 +42,7 @@
       </div>
 
       <div>
-        <a href="{% url 'users_criar' %}" class="btn" id="bt1" style="width: 180px;"><strong>Cadastrar Servidor</strong></a>
+        <a href="{% url 'users_criar' %}" class="btn" id="bt1" style="width: 180px;"><strong>Cadastrar servidor</strong></a>
       </div>
     </div>
     <div class="table-responsive">
@@ -50,6 +50,7 @@
         <thead>
           <tr class="text-center">
             <th scope="col">Usuário</th>
+            <th scope="col">Cargo</th>
             <th scope="col">Email</th>
             <th scope="col">Ações</th>
           </tr>
@@ -58,11 +59,12 @@
           {% for object in object_list %}
             <tr class="text-center">
               <td>{{ object.username }}</td>
+              <td>{{ object.cargo }}</td>
               <td>{{ object.email }}</td>
               <td>
                 <div class="d-flex justify-content-center">
                   <a href="{% url 'users_remover' pk=object.pk %}" class="mr-3"><i class="bi bi-trash3-fill" id="tableicon"></i></a>
-                  <a href="#"><i class="bi bi-eye-fill" id="tableicon"></i></a>
+                  <a href="{% url 'users_editar' pk=object.pk %}"><i class="bi bi-eye-fill" id="tableicon"></i></a>
                 </div>
               </td>
             </tr>

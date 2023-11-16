@@ -26,9 +26,10 @@
 
       <div class="d-flex justify-content-center align-items-center">
         <div class="circle">
-          <img src="{% static 'img\user.jpg' %}">
+          <img src="{{ logged_user.foto_perfil.url }}">
         </div>
-        <span class="user ml-3">Emiliana</span>
+        <span class="user ml-3"> {{ logged_user.username }}</span>
+        
       </div>
       <ul class="mt-5 ml-5 nav-list">
           
@@ -56,14 +57,14 @@
             <span class="txt-link">Logradouro</span>
           </a>
         </li>
-        <li class="item-menu {% active_link 'users_listar || filtro_users' 'ativo' %}">
+        <li class="item-menu {% active_link 'users_listar || filtro_users || users_criar' 'ativo' %}">
           <a href="{% url 'users_listar' %}">
             <span class="icon"><i class="bi bi-person-fill-add"></i></span>
             <span class="txt-link">Servidores</span>
           </a>
         </li>
-        <li class="item-menu {% active_link 'account_profile' 'ativo' %">
-          <a href="{% url 'account_profile' %}">
+        <li class="item-menu {% active_link 'users_profile || users_update' 'ativo' %}">
+          <a href="{% url 'users_profile' %}">
             <span class="icon"><i class="bi bi-person-fill"></i></span>
             <span class="txt-link">Perfil</span>
           </a>
@@ -114,7 +115,6 @@
         })
       </script>
     {% endblock %}
-
 
   <script src="{% static 'js/menuuu.js' %}"></script>
 
