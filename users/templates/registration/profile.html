@@ -6,7 +6,8 @@
 <div class="mt-2">
     <div class="d-flex justify-content-between align-items-center">
         <div class="mt-2">
-            <h3 class="" style="color:#022F32;"><strong>{{ logged_user_perfil.name }} ({{logged_user_perfil.cpf}})</strong></h3>
+            <h3 class="" style="color:#022F32;"><strong>{{ logged_user.name }} ({{logged_user_perfil.cpf}})</strong>
+            </h3>
             <p><strong>{{ logged_user_perfil.cargo }}</strong></p>
         </div>
 
@@ -32,7 +33,7 @@
             <div class="row col-12 mb-5">
                 <div class="col-6 m-auto">
                     <div><strong style="color: #022f32">Nome:</strong>
-                        <p class="">{{ logged_user_perfil.name }}
+                        <p class="">{{ logged_user.name }}
                         </p>
                         <hr style="color: #022f32; font-size: 40px;">
                     </div>
@@ -58,7 +59,7 @@
                 <div class="col-6">
 
                     <div><strong style="color: #022f32">Email:</strong>
-                        <p class="">{{ logged_user_perfil.email }}
+                        <p class="">{{ logged_user.email }}
                         </p>
                         <hr style="color: #022f32; font-size: 40px;">
                     </div>

@@ -8,7 +8,7 @@ class PerfilForm(forms.ModelForm):
     class Meta:
         model = Perfil
         fields = (
-            "cpf", "telefone", "cep", "logradouro", "numero", "complemento", "bairro", "cidade","foto_perfil","name","email"
+            "cpf", "telefone", "cep", "logradouro", "numero", "complemento", "bairro", "cidade","foto_perfil"
         )
         widgets = {
             'foto_perfil': forms.FileInput(attrs={
@@ -17,18 +17,7 @@ class PerfilForm(forms.ModelForm):
             })
         }
 
-    name = forms.CharField(
-        widget=forms.TextInput(attrs={
-            "class": "form-control",
-            "style": "height:45px; border:none; border-radius:10px"
-        })
-    )
-    email = forms.EmailField(
-        widget=forms.EmailInput(attrs={
-            "class": "form-control",
-            "style": "height:45px; border:none; border-radius:10px"
-        })
-    )
+    
 
     cpf = forms.CharField(
         widget=forms.TextInput(attrs={

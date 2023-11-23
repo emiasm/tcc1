@@ -14,6 +14,4 @@ class Perfil (models.Model):
     complemento = models.CharField(blank=True, max_length=255)
     bairro = models.CharField(blank=True, max_length=255)
     cidade = models.CharField(blank=True, max_length=255)
-    name = models.CharField(blank=True, max_length=255)
-    email = models.EmailField(blank=True)
     foto_perfil = models.ImageField(upload_to='static/media/img', null=True, blank=True, default="static/media/img/user.png")

@@ -9,6 +9,7 @@ TIPO_CARGO=(
 
 
 class User(AbstractUser):
+    email = models.EmailField(blank=True)
     name = models.CharField(_("Name of User"), blank=True, max_length=255)
     cargo = models.CharField(_("Cargo"), blank=True, max_length=255, choices=TIPO_CARGO)
     first_name = None  # type: ignore

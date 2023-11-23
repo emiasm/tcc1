@@ -9,7 +9,7 @@ class UserRegistrationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('username', 'password1', 'password2', 'cargo')
+        fields = ('username', 'password1', 'password2', 'cargo','name','email')
         widgets = {
             'cargo': forms.Select(attrs={
                 "class": "form-control",
@@ -17,6 +17,18 @@ class UserRegistrationForm(UserCreationForm):
             }),
         }
 
+    name = forms.CharField(
+        widget=forms.TextInput(attrs={
+            "class": "form-control",
+            "style": "height:45px; border:none; border-radius:10px"
+        })
+    )
+    email = forms.EmailField(
+        widget=forms.EmailInput(attrs={
+            "class": "form-control",
+            "style": "height:45px; border:none; border-radius:10px"
+        })
+    )
     username = forms.CharField(
         widget=forms.TextInput(attrs={
             "class": "form-control",
