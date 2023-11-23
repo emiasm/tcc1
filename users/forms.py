@@ -9,20 +9,13 @@ class UserRegistrationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'password1', 'password2', 'cargo','name')
+        fields = ('username', 'password1', 'password2', 'cargo')
         widgets = {
             'cargo': forms.Select(attrs={
                 "class": "form-control",
                 "style": "height:45px; border:none; border-radius:10px"
             }),
         }
-
-    name = forms.CharField(
-        widget=forms.TextInput(attrs={
-            "class": "form-control",
-            "style": "height:45px; border:none; border-radius:10px"
-        })
-    )
 
     username = forms.CharField(
         widget=forms.TextInput(attrs={
@@ -45,12 +38,6 @@ class UserRegistrationForm(UserCreationForm):
         })
     )
 
-    email = forms.EmailField(
-        widget=forms.EmailInput(attrs={
-            "class": "form-control",
-            "style": "height:45px; border:none; border-radius:10px"
-        })
-    )
 
     def save(self, commit=True):
         user = super().save(commit=False)

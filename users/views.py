@@ -3,8 +3,11 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages import views
 from django.db import models
+from django.forms.forms import BaseForm
+from django.http.response import HttpResponse
 from django.urls import reverse_lazy
 from django.views import generic
+from perfil.models import Perfil
 from django.shortcuts import render,get_object_or_404
 from django.views.generic import CreateView, DeleteView, DetailView, RedirectView, UpdateView
 
@@ -19,9 +22,16 @@ class UserCreateView(views.SuccessMessageMixin, generic.CreateView):
     success_message = "Usuário cadastrado com sucesso!"
     template_name = "users/signup.html"
 
+    def form_valid(self, form):
+        url = super().form_valid(form)
+
+        Perfil.objects.create(usuario=self.object)
+
+        return url
+
 class UsersListView(LoginRequiredMixin, generic.ListView):
     model = User
-    paginate_by = 5
+    # paginate_by = 5
     ordering = ["name"]
     template_name = "users/users.html"
 
@@ -38,31 +48,15 @@ class ThirdUserUpdateView(LoginRequiredMixin, views.SuccessMessageMixin, UpdateV
     success_message = ("Usuário atualizado com sucesso!")
     template_name = "users/signup.html"
 
-
 class UserUpdateView(LoginRequiredMixin, views.SuccessMessageMixin, UpdateView):
     model = User
-    fields = ["name"]
-    template_name='users/users_update_form'
-    success_message = ("Information successfully updated")
-
-    def get_success_url(self):
-        assert self.request.user.is_authenticated  # for mypy to know that the user is authenticated
-        return self.request.user.get_absolute_url()
-
-    def get_object(self):
-        return self.request.user
-    
-user_update_view = UserUpdateView.as_view()
+    form_class = UserRegistrationForm
+    success_url = reverse_lazy("users_listar")
+    success_message = ("Usuário atualizado com sucesso!")
+    template_name = "users/signup.html"
 
 
-class ProfileView(LoginRequiredMixin, generic.TemplateView):
-    template_name = "registration/profile.html"
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["logged_user"] = self.request.user
-        context["users_number"] = User.objects.exclude(is_superuser=True).exclude(email="deleted").count()
 
-        return context
 
 class UserDetailView(LoginRequiredMixin, DetailView):
     model = User

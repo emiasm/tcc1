@@ -19,6 +19,8 @@ class RuaForm(forms.ModelForm):
                 "style": "height:45px; border:none; border-radius:10px"
             }),
         }
+
+    
         
 
     nome = forms.CharField(

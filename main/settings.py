@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'visita2',
     'active_link',
     'django_filters',
+    'perfil',
     
 ]
 

@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.views import LoginView,LogoutView
-from users.views import UserCreateView,UsersListView,UsersDeleteView,filtro_users,ProfileView,ThirdUserUpdateView,UpdateView
+from users.views import UserCreateView,UsersListView,UserUpdateView,UsersDeleteView,filtro_users,ThirdUserUpdateView,UpdateView
 from core.views import HomeView, VisitasView, LogradouroView
 from imovel.views import ImovelCreateView,ImovelDeleteView,ImovelDetailView,ImovelListView, ImovelUpdateView,filtro_moradores
 from visita1.views import Visita1CreateView,Visita1DeleteView,Visita1DetailView,Visita1ListView,Visita1UpdateView
@@ -25,7 +25,7 @@ from morador.views import MoradorCreateView, MoradorDeleteView, MoradorDetailVie
 from visita2.views import Visita2CreateView,Visita2DeleteView,Visita2DetailView,Visita2ListView,Visita2UpdateView
 from bairro.views import BairroCreateView,BairroDeleteView,BairroDetailView,BairroListView,BairroUpdateView,filtro_bairros
 from rua.views import RuaCreateView,RuaDeleteView,RuaDetailView,RuaListView,RuaUpdateView,filtro_rua
-
+from perfil.views import PerfilUpdate,ProfileView
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -35,12 +35,13 @@ urlpatterns = [
     path('visitas/', VisitasView.as_view(), name='visitas'),
     path('logradouro/', LogradouroView.as_view(), name='logradouro'),
     path('users/profile/', ProfileView.as_view(), name='users_profile'),
+    path('profile/update/', PerfilUpdate.as_view(),name="editar_perfil"),
 
     path('users/criar', UserCreateView.as_view(), name='users_criar'),
     path('users/listar/', UsersListView.as_view(), name='users_listar'),
     path('users/login/', LoginView.as_view(), name='login'),
     path('users/logout/', LogoutView.as_view(), name='logout'),
-    path("users/update/", UpdateView.as_view(), name="users_update"),
+    path("users/update/<int:pk>/", UserUpdateView.as_view(), name="users_update"),
     path("users/editar/<int:pk>/", ThirdUserUpdateView.as_view(), name="users_editar"),
     path('users/remover/<int:pk>/',UsersDeleteView.as_view(), name='users_remover'),
     path('filtro_users/', filtro_users, name='filtro_users'),

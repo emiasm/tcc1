@@ -6,14 +6,12 @@
 <div class="mt-2">
     <div class="d-flex justify-content-between align-items-center">
         <div class="mt-2">
-            <h3 class="" style="color:#022F32;"><strong>{{ logged_user.name }} ({{logged_user.cpf}})</strong></h3>
-            <p><strong>{{ logged_user.cargo }}</strong></p>
+            <h3 class="" style="color:#022F32;"><strong>{{ logged_user_perfil.name }} ({{logged_user_perfil.cpf}})</strong></h3>
+            <p><strong>{{ logged_user_perfil.cargo }}</strong></p>
         </div>
 
+        <a href="{% url 'editar_perfil' %}" class="btn" id="bt1"><strong>Editar</strong></a>
 
-        <div>
-            <a href="{% url 'users_update' %}" class="btn" id="bt1"><strong>Editar</strong></a>
-        </div>
 
 
     </div>
@@ -27,14 +25,14 @@
     <div class="row col-12 d-flex justify-content-center align-items-center mb-4">
         <div class="col-4">
             <div class="circle2">
-                <img class="img img-fluid" src="{{ logged_user.foto_perfil.url }}">
+                <img class="img img-fluid" src="{{ logged_user_perfil.foto_perfil.url }}">
             </div>
         </div>
         <div class="col-8 ">
             <div class="row col-12 mb-5">
                 <div class="col-6 m-auto">
                     <div><strong style="color: #022f32">Nome:</strong>
-                        <p class="">{{ logged_user.name }}
+                        <p class="">{{ logged_user_perfil.name }}
                         </p>
                         <hr style="color: #022f32; font-size: 40px;">
                     </div>
@@ -42,7 +40,7 @@
                 <div class="col-6">
 
                     <div><strong style="color: #022f32">CPF:</strong>
-                        <p class="">{{ logged_user.cpf }}
+                        <p class="">{{ logged_user_perfil.cpf }}
                         </p>
                         <hr style="color: #022f32; font-size: 40px;">
                     </div>
@@ -52,7 +50,7 @@
             <div class="row col-12">
                 <div class="col-6">
                     <div><strong style="color: #022f32">Telefone:</strong>
-                        <p class="">{{ logged_user.telefone }}
+                        <p class="">{{ logged_user_perfil.telefone }}
                         </p>
                         <hr style="color: #022f32; font-size: 40px;">
                     </div>
@@ -60,7 +58,7 @@
                 <div class="col-6">
 
                     <div><strong style="color: #022f32">Email:</strong>
-                        <p class="">{{ logged_user.email }}
+                        <p class="">{{ logged_user_perfil.email }}
                         </p>
                         <hr style="color: #022f32; font-size: 40px;">
                     </div>
@@ -79,7 +77,7 @@
         <div class="row col-12">
             <div class="col-6">
                 <div><strong style="color: #022f32">CEP:</strong>
-                    <p class="">{{ logged_user.cep }}
+                    <p class="">{{ logged_user_perfil.cep }}
                     </p>
                     <hr style="color: #022f32; font-size: 40px;">
                 </div>
@@ -87,7 +85,7 @@
 
             <div class="col-6">
                 <div><strong style="color: #022f32">Logradouro:</strong>
-                    <p class="">{{ logged_user.logradouro }}
+                    <p class="">{{ logged_user_perfil.logradouro }}
                     </p>
                     <hr style="color: #022f32; font-size: 40px;">
                 </div>
@@ -97,7 +95,7 @@
         <div class="row col-12">
             <div class="col-6">
                 <div><strong style="color: #022f32">Número:</strong>
-                    <p class="">{{ logged_user.numero }}
+                    <p class="">{{ logged_user_perfil.numero }}
                     </p>
                     <hr style="color: #022f32; font-size: 40px;">
                 </div>
@@ -105,7 +103,7 @@
 
             <div class="col-6">
                 <div><strong style="color: #022f32">Complemento:</strong>
-                    <p class="">{{ logged_user.complemento }}
+                    <p class="">{{ logged_user_perfil.complemento }}
                     </p>
                     <hr style="color: #022f32; font-size: 40px;">
                 </div>
@@ -115,7 +113,7 @@
         <div class="row col-12">
             <div class="col-6">
                 <div><strong style="color: #022f32">Bairro:</strong>
-                    <p class="">{{ logged_user.bairro }}
+                    <p class="">{{ logged_user_perfil.bairro }}
                     </p>
                     <hr style="color: #022f32; font-size: 40px;">
                 </div>
@@ -123,7 +121,7 @@
 
             <div class="col-6">
                 <div><strong style="color: #022f32">Cidade:</strong>
-                    <p class="">{{ logged_user.cidade }}
+                    <p class="">{{ logged_user_perfil.cidade }}
                     </p>
                     <hr style="color: #022f32; font-size: 40px;">
                 </div>

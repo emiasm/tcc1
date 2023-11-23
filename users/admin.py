@@ -12,7 +12,7 @@ class UserAdmin(auth_admin.UserAdmin):
 
     fieldsets = (
         (None, {"fields": ("username", "password")}),
-        (_("Personal info"), {"fields": ("name", "email","cpf","telefone","cep","logradouro","numero","complemento","bairro","cidade","cargo","foto_perfil")}),
+        (_("Personal info"), {"fields": ("cargo",)}),
         (
             _("Permissions"),
             {
@@ -27,5 +27,5 @@ class UserAdmin(auth_admin.UserAdmin):
         ),
         (_("Important dates"), {"fields": ("last_login", "date_joined")}),
     )
-    list_display = ["username", "name", "is_superuser"]
-    search_fields = ["name"]
+    list_display = ["username", "is_superuser"]
+

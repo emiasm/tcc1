@@ -15,6 +15,7 @@
 
     {% endblock %}
   </title>
+  <link rel="icon" type="image/png" href=" {% static 'img/icon.png' %}" />
 </head>
 
 <body>
@@ -26,7 +27,7 @@
 
       <div class="d-flex justify-content-center align-items-center">
         <div class="circle">
-          <img src="{{ logged_user.foto_perfil.url }}">
+          <img src="{{ logged_user_perfil.foto_perfil.url }}">
         </div>
         <span class="user ml-3"> {{ logged_user.username }}</span>
         
@@ -100,6 +101,7 @@
       <script>
         $(document).ready(function () {
           $('.cpf').mask('000.000.000-00', { reverse: true })
+          $('.cep').mask('00000-000', { reverse: true })
         })
       </script>
 

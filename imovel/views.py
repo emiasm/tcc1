@@ -8,12 +8,20 @@ from .models import Imovel
 from django.shortcuts import render
 from django_filters.views import FilterView
 from .filters import ImovelFilter
+from users.models import User
 
 class ImovelListView(LoginRequiredMixin, FilterView):
     model = Imovel
     # paginate_by=3
     filterset_class = ImovelFilter
     template_name = "imovel/imoveis.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["logged_user"] = self.request.user
+        context["users_number"] = User.objects.exclude(is_superuser=True).exclude(email="deleted").count()
+
+        return context
 
 class ImovelDetailView(LoginRequiredMixin, generic.DetailView):
     model = Imovel

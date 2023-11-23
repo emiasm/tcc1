@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% block title %}
+  Editar Perfil
+{% endblock %}
+{% block content %}
+
+<div class="mt-2">
+    <h3 class="mb-5" style="color:#022F32;"><strong>Formulário de Coleta de Dados</strong></h3>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <section class='container'>
+            <div class='row col-12 mb-4'>
+                <div class='col-12'>
+                    <h5><strong style="color: #022f32">Editar Perfil</strong></h5>
+                    <hr>
+                </div>
+            </div>
+            
+            <div class="row col-12 mb-2 mt-2">
+                <div class='col-12'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong
+                                style="color: #022f32">Nome</strong></label>
+                        <div class="caixa">
+                            {{form.name}}
+                        </div>
+                    </div>
+                </div>
+              </div>
+  
+              <div class="row mt-2 col-12 ">
+                  <div class='col-12'>
+                      <div class="form-group">
+                          <label for="nome" class='mb-0'><strong
+                                  style="color: #022f32">Email</strong></label>
+                          <div class="caixa">
+                              {{form.email}}
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+            <div class="row mt-2 col-12 ">
+                <div class='col-6'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong
+                                style="color: #022f32">CPF</strong></label>
+                        <div class="caixa">
+                            {{form.cpf}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class='col-6'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong style="color: #022f32">Telefone</strong></label>
+                        <div class="caixa">
+                            {{form.telefone}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row col-12 mb-2 mt-2">
+                <div class='col-12'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong
+                                style="color: #022f32">Rua</strong></label>
+                        <div class="caixa">
+                            {{form.logradouro}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-2 col-12 ">
+                <div class='col-6'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong
+                                style="color: #022f32">Número</strong></label>
+                        <div class="caixa">
+                            {{form.numero}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class='col-6'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong
+                                style="color: #022f32">CEP</strong></label>
+                        <div class="caixa">
+                            {{form.cep}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-2 col-12 ">
+                <div class='col-6'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong
+                                style="color: #022f32">Complemento</strong></label>
+                        <div class="caixa">
+                            {{form.complemento}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class='col-6'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong
+                                style="color: #022f32">Bairro</strong></label>
+                        <div class="caixa">
+                            {{form.bairro}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-2 col-12 ">
+                <div class='col-6'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong
+                                style="color: #022f32">Cidade</strong></label>
+                        <div class="caixa">
+                            {{form.cidade}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class='col-6'>
+                    <div class="form-group">
+                        <label for="nome" class='mb-0'><strong
+                                style="color: #022f32">Foto de Perfil</strong></label>
+                        <div class="caixa">
+                            {{form.foto_perfil}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row col-12 mb-2 mt-2 mr-5">
+                <div class='col-12 mb-0 d-flex justify-content-end '>
+                    <button type="submit" class="btn" id="bt1"><strong>SALVAR</strong></button>
+                </div>
+            </div>
+        </section>
+
+    </form>
+</div>
+{% endblock %}
