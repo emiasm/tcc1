@@ -5,17 +5,34 @@ from django.views import generic
 from users.permissions import AdminPermission
 from .forms import BairroForm
 from .models import Bairro
-from django.shortcuts import render
+
+from django.shortcuts import render,  get_object_or_404
+from perfil.models import Perfil
+from users.models import User
 
 class BairroListView(LoginRequiredMixin, generic.ListView):
   model = Bairro
   # paginate_by=3
   template_name = "bairro/bairros.html"
+  def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["logged_user"] = self.request.user
+        context["logged_user_perfil"] = self.object = get_object_or_404(Perfil,usuario=self.request.user)
+        context["users_number"] = User.objects.exclude(is_superuser=True).exclude(email="deleted").count()
+
+        return context
   
 
 class BairroDetailView(LoginRequiredMixin, generic.DetailView):
   model = Bairro
   template_name = "bairro/bairro_detalhe.html"
+  def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["logged_user"] = self.request.user
+        context["logged_user_perfil"] = self.object = get_object_or_404(Perfil,usuario=self.request.user)
+        context["users_number"] = User.objects.exclude(is_superuser=True).exclude(email="deleted").count()
+
+        return context
 
 class BairroCreateView(LoginRequiredMixin, views.SuccessMessageMixin, generic.CreateView):
   model = Bairro
@@ -23,11 +40,25 @@ class BairroCreateView(LoginRequiredMixin, views.SuccessMessageMixin, generic.Cr
   success_url = reverse_lazy("bairro_listar")
   success_message= 'Cadastrado com sucesso!'
   template_name = "bairro/form.html"
+  def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["logged_user"] = self.request.user
+        context["logged_user_perfil"] = self.object = get_object_or_404(Perfil,usuario=self.request.user)
+        context["users_number"] = User.objects.exclude(is_superuser=True).exclude(email="deleted").count()
+
+        return context
   
 class BairroDeleteView(LoginRequiredMixin, generic.DeleteView):
   model = Bairro
   success_url = reverse_lazy("bairro_listar")
   template_name = "bairro/bairro_confirm_delete.html"
+  def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["logged_user"] = self.request.user
+        context["logged_user_perfil"] = self.object = get_object_or_404(Perfil,usuario=self.request.user)
+        context["users_number"] = User.objects.exclude(is_superuser=True).exclude(email="deleted").count()
+
+        return context
   
 class BairroUpdateView(LoginRequiredMixin, views.SuccessMessageMixin, generic.UpdateView):
   model = Bairro
@@ -35,6 +66,13 @@ class BairroUpdateView(LoginRequiredMixin, views.SuccessMessageMixin, generic.Up
   success_url = reverse_lazy("bairro_listar")
   success_message= 'Alterações salvas!'
   template_name = "bairro/form.html"
+  def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["logged_user"] = self.request.user
+        context["logged_user_perfil"] = self.object = get_object_or_404(Perfil,usuario=self.request.user)
+        context["users_number"] = User.objects.exclude(is_superuser=True).exclude(email="deleted").count()
+
+        return context
 
 def filtro_bairros(request):
     termo_bairro = request.GET.get('termo_bairro', '')

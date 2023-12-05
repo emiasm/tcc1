@@ -37,14 +37,14 @@ class UserRegistrationForm(UserCreationForm):
     )
     
     password1 = forms.CharField(
-        widget=forms.TextInput(attrs={
+        widget=forms.PasswordInput(attrs={
             "class": "form-control",
             "style": "height:45px; border:none; border-radius:10px"
         })
     )
 
     password2 = forms.CharField(
-        widget=forms.TextInput(attrs={
+        widget=forms.PasswordInput(attrs={
             "class": "form-control",
             "style": "height:45px; border:none; border-radius:10px"
         })

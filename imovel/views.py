@@ -9,23 +9,36 @@ from django.shortcuts import render
 from django_filters.views import FilterView
 from .filters import ImovelFilter
 from users.models import User
+from django.shortcuts import render,  get_object_or_404
+from perfil.models import Perfil
+
+
 
 class ImovelListView(LoginRequiredMixin, FilterView):
     model = Imovel
     # paginate_by=3
     filterset_class = ImovelFilter
     template_name = "imovel/imoveis.html"
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["logged_user"] = self.request.user
+        context["logged_user_perfil"] = self.object = get_object_or_404(Perfil,usuario=self.request.user)
         context["users_number"] = User.objects.exclude(is_superuser=True).exclude(email="deleted").count()
 
         return context
 
+ 
+
 class ImovelDetailView(LoginRequiredMixin, generic.DetailView):
     model = Imovel
     template_name = "imovel/imovel_detalhe.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["logged_user"] = self.request.user
+        context["logged_user_perfil"] = self.object = get_object_or_404(Perfil,usuario=self.request.user)
+        context["users_number"] = User.objects.exclude(is_superuser=True).exclude(email="deleted").count()
+
+        return context
 
 class ImovelCreateView(LoginRequiredMixin, views.SuccessMessageMixin, generic.CreateView):
   model = Imovel
@@ -33,11 +46,25 @@ class ImovelCreateView(LoginRequiredMixin, views.SuccessMessageMixin, generic.Cr
   success_url = reverse_lazy("imovel_listar")
   success_message= 'Cadastrado com sucesso!'
   template_name = "imovel/form.html"
+  def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["logged_user"] = self.request.user
+        context["logged_user_perfil"] = self.object = get_object_or_404(Perfil,usuario=self.request.user)
+        context["users_number"] = User.objects.exclude(is_superuser=True).exclude(email="deleted").count()
+
+        return context
   
 class ImovelDeleteView(LoginRequiredMixin, generic.DeleteView):
   model = Imovel
   success_url = reverse_lazy("imovel_listar")
   template_name = "imovel/imovel_confirm_delete.html"
+  def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["logged_user"] = self.request.user
+        context["logged_user_perfil"] = self.object = get_object_or_404(Perfil,usuario=self.request.user)
+        context["users_number"] = User.objects.exclude(is_superuser=True).exclude(email="deleted").count()
+
+        return context
   
 class ImovelUpdateView(LoginRequiredMixin, views.SuccessMessageMixin, generic.UpdateView):
   model = Imovel
@@ -45,6 +72,13 @@ class ImovelUpdateView(LoginRequiredMixin, views.SuccessMessageMixin, generic.Up
   success_url = reverse_lazy("imovel_listar")
   success_message= 'Alterações salvas!'
   template_name = "imovel/form.html"
+  def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["logged_user"] = self.request.user
+        context["logged_user_perfil"] = self.object = get_object_or_404(Perfil,usuario=self.request.user)
+        context["users_number"] = User.objects.exclude(is_superuser=True).exclude(email="deleted").count()
+
+        return context
 
 
 def filtro_moradores(request):

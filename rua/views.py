@@ -5,7 +5,10 @@ from django.views import generic
 from users.permissions import AdminPermission
 from .forms import RuaForm
 from .models import Rua
-from django.shortcuts import render
+from django.shortcuts import render,  get_object_or_404
+from perfil.models import Perfil
+from users.models import User
+
 
 
 
@@ -13,6 +16,13 @@ class RuaListView(LoginRequiredMixin, generic.ListView):
     model = Rua
     # paginate_by=3
     template_name = "rua/ruas.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["logged_user"] = self.request.user
+        context["logged_user_perfil"] = self.object = get_object_or_404(Perfil,usuario=self.request.user)
+        context["users_number"] = User.objects.exclude(is_superuser=True).exclude(email="deleted").count()
+
+        return context
 
 class RuaDetailView(LoginRequiredMixin, generic.DetailView):
     model = Rua
@@ -24,11 +34,25 @@ class RuaCreateView(LoginRequiredMixin, views.SuccessMessageMixin, generic.Creat
   success_url = reverse_lazy("rua_listar")
   success_message= 'Cadastrado com sucesso!'
   template_name = "rua/form.html"
+  def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["logged_user"] = self.request.user
+        context["logged_user_perfil"] = self.object = get_object_or_404(Perfil,usuario=self.request.user)
+        context["users_number"] = User.objects.exclude(is_superuser=True).exclude(email="deleted").count()
+
+        return context
 
 class RuaDeleteView(LoginRequiredMixin, generic.DeleteView):
   model = Rua
   success_url = reverse_lazy("rua_listar")
   template_name = "rua/rua_confirm_delete.html"
+  def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["logged_user"] = self.request.user
+        context["logged_user_perfil"] = self.object = get_object_or_404(Perfil,usuario=self.request.user)
+        context["users_number"] = User.objects.exclude(is_superuser=True).exclude(email="deleted").count()
+
+        return context
   
 class RuaUpdateView(LoginRequiredMixin, views.SuccessMessageMixin, generic.UpdateView):
   model = Rua
@@ -36,6 +60,13 @@ class RuaUpdateView(LoginRequiredMixin, views.SuccessMessageMixin, generic.Updat
   success_url = reverse_lazy("rua_listar")
   success_message= 'Alterações salvas!'
   template_name = "rua/form.html"
+  def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["logged_user"] = self.request.user
+        context["logged_user_perfil"] = self.object = get_object_or_404(Perfil,usuario=self.request.user)
+        context["users_number"] = User.objects.exclude(is_superuser=True).exclude(email="deleted").count()
+
+        return context
 
 # def filtro_rua(request):
 #     termo_rua = request.GET.get('termo_rua', '')

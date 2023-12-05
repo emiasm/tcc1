@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.contrib.auth.views import LoginView,LogoutView
+from django.contrib.auth.views import LoginView,LogoutView,PasswordChangeDoneView,PasswordContextMixin,PasswordResetCompleteView,PasswordResetConfirmView,PasswordResetDoneView,PasswordResetView,PasswordChangeView
 from users.views import UserCreateView,UsersListView,UserUpdateView,UsersDeleteView,filtro_users,ThirdUserUpdateView,UpdateView
 from core.views import HomeView, VisitasView, LogradouroView
 from imovel.views import ImovelCreateView,ImovelDeleteView,ImovelDetailView,ImovelListView, ImovelUpdateView,filtro_moradores
@@ -30,7 +30,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin', admin.site.urls),
     path('', HomeView.as_view(), name='index'),
     path('visitas/', VisitasView.as_view(), name='visitas'),
     path('logradouro/', LogradouroView.as_view(), name='logradouro'),
@@ -85,5 +85,12 @@ urlpatterns = [
     path('rua/remover/<int:pk>/',RuaDeleteView.as_view(), name='rua_remover'),
     path('rua/listar/', RuaListView.as_view(), name='rua_listar'),
     path('filtro_ruas/', filtro_rua, name='filtro_ruas'),
+
+    path("users/password_change/", PasswordChangeView.as_view(), name="password_change"),
+    path("users/password_change/done/",PasswordChangeDoneView.as_view(), name="password_change_done",),
+    path("users/password_reset/", PasswordResetView.as_view(), name="password_reset"),
+    path("users/password_reset/done/",PasswordResetDoneView.as_view(),name="password_reset_done",),
+    path("users/reset/<uidb64>/<token>/",PasswordResetConfirmView.as_view(),name="password_reset_confirm",),
+    path("users/reset/done/",PasswordResetCompleteView.as_view(),name="password_reset_complete",),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

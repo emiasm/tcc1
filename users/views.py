@@ -10,8 +10,9 @@ from django.views import generic
 from perfil.models import Perfil
 from django.shortcuts import render,get_object_or_404
 from django.views.generic import CreateView, DeleteView, DetailView, RedirectView, UpdateView
-
+from django.contrib.auth.views import PasswordChangeDoneView,PasswordChangeView,PasswordContextMixin,PasswordResetCompleteView,PasswordResetConfirmView,PasswordResetDoneView,PasswordResetView
 from .forms import UserRegistrationForm
+
 
 User = get_user_model()
 
@@ -21,6 +22,14 @@ class UserCreateView(views.SuccessMessageMixin, generic.CreateView):
     success_url = reverse_lazy("users_listar")
     success_message = "Usuário cadastrado com sucesso!"
     template_name = "users/signup.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["logged_user"] = self.request.user
+        context["logged_user_perfil"] = self.object = get_object_or_404(Perfil,usuario=self.request.user)
+        context["users_number"] = User.objects.exclude(is_superuser=True).exclude(email="deleted").count()
+
+        return context
 
     def form_valid(self, form):
         url = super().form_valid(form)
@@ -34,11 +43,25 @@ class UsersListView(LoginRequiredMixin, generic.ListView):
     # paginate_by = 5
     ordering = ["name"]
     template_name = "users/users.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["logged_user"] = self.request.user
+        context["logged_user_perfil"] = self.object = get_object_or_404(Perfil,usuario=self.request.user)
+        context["users_number"] = User.objects.exclude(is_superuser=True).exclude(email="deleted").count()
+
+        return context
 
 class UsersDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = User
     success_url = reverse_lazy("users_listar")
     template_name = "users/users_confirm_delete.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["logged_user"] = self.request.user
+        context["logged_user_perfil"] = self.object = get_object_or_404(Perfil,usuario=self.request.user)
+        context["users_number"] = User.objects.exclude(is_superuser=True).exclude(email="deleted").count()
+
+        return context
 
 
 class ThirdUserUpdateView(LoginRequiredMixin, views.SuccessMessageMixin, UpdateView):
@@ -47,6 +70,13 @@ class ThirdUserUpdateView(LoginRequiredMixin, views.SuccessMessageMixin, UpdateV
     success_url = reverse_lazy("users_listar")
     success_message = ("Usuário atualizado com sucesso!")
     template_name = "users/signup.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["logged_user"] = self.request.user
+        context["logged_user_perfil"] = self.object = get_object_or_404(Perfil,usuario=self.request.user)
+        context["users_number"] = User.objects.exclude(is_superuser=True).exclude(email="deleted").count()
+
+        return context
 
 class UserUpdateView(LoginRequiredMixin, views.SuccessMessageMixin, UpdateView):
     model = User
@@ -54,6 +84,13 @@ class UserUpdateView(LoginRequiredMixin, views.SuccessMessageMixin, UpdateView):
     success_url = reverse_lazy("users_listar")
     success_message = ("Usuário atualizado com sucesso!")
     template_name = "users/signup.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["logged_user"] = self.request.user
+        context["logged_user_perfil"] = self.object = get_object_or_404(Perfil,usuario=self.request.user)
+        context["users_number"] = User.objects.exclude(is_superuser=True).exclude(email="deleted").count()
+
+        return context
 
 
 
@@ -63,6 +100,13 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     slug_field = "id"
     slug_url_kwarg = "id"
     template_name = "registration/profile.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["logged_user"] = self.request.user
+        context["logged_user_perfil"] = self.object = get_object_or_404(Perfil,usuario=self.request.user)
+        context["users_number"] = User.objects.exclude(is_superuser=True).exclude(email="deleted").count()
+
+        return context
 
 def filtro_users(request):
     termo_users = request.GET.get('termo_users', '')
@@ -83,4 +127,3 @@ def filtro_users(request):
         'ordenacao': ordenacao,
     })
 
-  
