@@ -45,7 +45,7 @@ class UserCreateView(views.SuccessMessageMixin, generic.CreateView):
 class UsersListView(LoginRequiredMixin, FilterView):
     model = User
     filterset_class = UsersFilter
-    # paginate_by = 5
+    paginate_by = 4
     ordering = ["name"]
     template_name = "users/users.html"
     def get_context_data(self, **kwargs):

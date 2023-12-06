@@ -13,7 +13,7 @@ from users.models import User
 
 class Visita2ListView(LoginRequiredMixin, FilterView):
     model = Visita2
-    paginate_by=2
+    paginate_by=10
     filterset_class = Visita2Filter
     template_name = "visita2/visitas.html"
     def get_context_data(self, **kwargs):

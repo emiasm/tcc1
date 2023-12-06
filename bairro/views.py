@@ -14,7 +14,7 @@ from .filters import BairroFilter
 
 class BairroListView(LoginRequiredMixin, FilterView):
   model = Bairro
-  # paginate_by=3
+  paginate_by=5
   filterset_class = BairroFilter
   template_name = "bairro/bairros.html"
   def get_context_data(self, **kwargs):
