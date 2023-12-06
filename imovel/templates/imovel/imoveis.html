@@ -5,7 +5,7 @@
 
 {% block content %}
   <div class="mt-2">
-    <h3 style="color:#022F32;"><strong>Administração de Dados</strong></h3>
+    <h3 style="color:#022F32;"><strong>Gerenciar Imóveis</strong></h3>
     <div class="row col-12 mb-5 mt-5 d-flex justify-content-around">
       <form method="GET" action="{% url 'imovel_listar' %}" autocomplete="off" class="d-flex justify-content-between align-items-center w-100">
         <div class="col-5 d-flex align-items-center justify-content-center" >
@@ -70,7 +70,7 @@
             {% empty %}
             <tr class="text-center">
               <td colspan="5">
-                <p>Não existem reservas cadastradas.</p>
+                <p>Não existe morador com esse nome cadastrado.</p>
               </td>
             </tr>
           {% endfor %}

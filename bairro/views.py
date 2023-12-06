@@ -9,10 +9,13 @@ from .models import Bairro
 from django.shortcuts import render,  get_object_or_404
 from perfil.models import Perfil
 from users.models import User
+from django_filters.views import FilterView
+from .filters import BairroFilter
 
-class BairroListView(LoginRequiredMixin, generic.ListView):
+class BairroListView(LoginRequiredMixin, FilterView):
   model = Bairro
   # paginate_by=3
+  filterset_class = BairroFilter
   template_name = "bairro/bairros.html"
   def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -92,5 +95,7 @@ def filtro_bairros(request):
         'termo_bairro': termo_bairro,
         'ordenacao': ordenacao,
     })
+  
+
 
 

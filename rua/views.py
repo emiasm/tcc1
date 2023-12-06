@@ -8,12 +8,15 @@ from .models import Rua
 from django.shortcuts import render,  get_object_or_404
 from perfil.models import Perfil
 from users.models import User
+from django_filters.views import FilterView
+from .filters import RuaFilter
 
 
 
 
-class RuaListView(LoginRequiredMixin, generic.ListView):
+class RuaListView(LoginRequiredMixin, FilterView):
     model = Rua
+    filterset_class = RuaFilter
     # paginate_by=3
     template_name = "rua/ruas.html"
     def get_context_data(self, **kwargs):

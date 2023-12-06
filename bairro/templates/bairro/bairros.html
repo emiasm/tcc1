@@ -4,20 +4,24 @@
 {% endblock %}
 {% block content %}
   <div class="mt-2">
-    <h3 style="color:#022F32;"><strong>Administração de Dados</strong></h3>
-    <div class="row col-12 mb-5 mt-5 d-flex justify-content-around">
-      <form method="GET" action="{% url 'filtro_bairros' %}" class="d-flex justify-content-between align-items-center w-100">
-        <div class="col-5 d-flex align-items-center justify-content-center" >
-          
-            <div style="width: 100%; border-start-start-radius: 5px;border-end-end-radius: 0px; border-end-start-radius: 5px;border-start-end-radius: 0px; height: 40px; align-items: center; display: flex; color: #022f32; background-color: #FFFFFF;">
-              <input style="height: 40px;border-start-start-radius: 5px;border-end-end-radius: 0px; border-end-start-radius: 5px;border-start-end-radius: 0px;" class="ml-2" placeholder="Procurar por bairro" type="text" name="termo_bairro" id="termo_bairro" value="{{ termo_bairro }}">
-            </div>
-            <div>
-              <button class="justify-content-center d-flex" type="submit" style="width: 50px; border-end-end-radius: 5px; border-start-end-radius: 5px; height: 40px; align-items: center; display: flex; color: #022f32; background-color: #14757B; border: none; outline: none;"><i class="bi bi-search text-white"></i></button>
-            </div>
+    <h3 style="color:#022F32;"><strong>Gerenciar Bairros</strong></h3>
+
+
+        <div class="row col-12 mb-5 mt-5 d-flex justify-content-around">
+          <form method="GET" action="{% url 'bairro_listar' %}" autocomplete="off" class="d-flex justify-content-between align-items-center w-100">
+            <div class="col-5 d-flex align-items-center justify-content-center" >
+              
+                <div style=" border: none; outline: none; width: 100%; border-start-start-radius: 5px;border-end-end-radius: 0px; border-end-start-radius: 5px;border-start-end-radius: 0px; height: 40px; align-items: center; display: flex; color: #022f32; background-color: #FFFFFF;">
+                  {{ filter.form.nome }}
+                </div>
+                <div>
+                  <button class="justify-content-center d-flex" type="submit" style="width: 50px; border-end-end-radius: 5px; border-start-end-radius: 5px; height: 40px; align-items: center; display: flex; color: #022f32; background-color: #14757B; border: none; outline: none;"><i class="bi bi-search text-white"></i></button>
+                </div>
+                
             
-        
-        </div>
+            </div>
+    
+  
         
         <div class="col-3 d-flex align-items-center justify-content-center">
           <div class="" style="">
@@ -59,7 +63,7 @@
             {% empty %}
             <tr class="text-center">
               <td colspan="2">
-                <p>Não existem reservas cadastradas.</p>
+                <p>Não existe bairros com esse nome cadastrados.</p>
               </td>
             </tr>
           {% endfor %}

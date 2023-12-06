@@ -12,12 +12,16 @@ from django.shortcuts import render,get_object_or_404
 from django.views.generic import CreateView, DeleteView, DetailView, RedirectView, UpdateView
 from django.contrib.auth.views import PasswordChangeDoneView,PasswordChangeView,PasswordContextMixin,PasswordResetCompleteView,PasswordResetConfirmView,PasswordResetDoneView,PasswordResetView
 from .forms import UserRegistrationForm
+from django_filters.views import FilterView
+from .filters import UsersFilter
+
 
 
 User = get_user_model()
 
-class UserCreateView(views.SuccessMessageMixin, generic.CreateView):
+class UserCreateView(views.SuccessMessageMixin, generic.ListView):
     model = User
+   
     form_class = UserRegistrationForm
     success_url = reverse_lazy("users_listar")
     success_message = "Usuário cadastrado com sucesso!"
@@ -38,8 +42,9 @@ class UserCreateView(views.SuccessMessageMixin, generic.CreateView):
 
         return url
 
-class UsersListView(LoginRequiredMixin, generic.ListView):
+class UsersListView(LoginRequiredMixin, FilterView):
     model = User
+    filterset_class = UsersFilter
     # paginate_by = 5
     ordering = ["name"]
     template_name = "users/users.html"

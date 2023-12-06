@@ -16,6 +16,14 @@ class PerfilUpdate(generic.UpdateView):
     model = Perfil
     # fields= ["cpf","telefone","cep","logradouro","numero","complemento","bairro","cidade","foto_perfil"]
     success_url = reverse_lazy("users_profile")
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["logged_user"] = self.request.user
+        context["logged_user_perfil"] = self.object = get_object_or_404(Perfil,usuario=self.request.user)
+        context["users_number"] = User.objects.exclude(is_superuser=True).exclude(email="deleted").count()
+
+        return context
 
     def get_object(self,queryset=None):
         self.object = get_object_or_404(Perfil,usuario=self.request.user)
