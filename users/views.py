@@ -19,9 +19,8 @@ from .filters import UsersFilter
 
 User = get_user_model()
 
-class UserCreateView(views.SuccessMessageMixin, generic.ListView):
+class UserCreateView(views.SuccessMessageMixin, generic.CreateView):
     model = User
-   
     form_class = UserRegistrationForm
     success_url = reverse_lazy("users_listar")
     success_message = "Usuário cadastrado com sucesso!"
@@ -41,6 +40,7 @@ class UserCreateView(views.SuccessMessageMixin, generic.ListView):
         Perfil.objects.create(usuario=self.object)
 
         return url
+
 
 class UsersListView(LoginRequiredMixin, FilterView):
     model = User
