@@ -29,7 +29,7 @@ class UserRegistrationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('username', 'password1', 'password2', 'cargo','name','email')
+        fields = ('username', 'password1', 'password2', 'cargo','name','email','group')
         widgets = {
             'cargo': forms.Select(attrs={
                 "class": "form-control",
@@ -76,12 +76,38 @@ class UserRegistrationForm(UserCreationForm):
         })
     )
 
+    group = ModelChoiceField(
+        queryset=models.Group.objects.all(),
+        required=True,
+        label=("Grupo de permissões"),
+        widget=forms.Select(
+            attrs={
+                "class": "form-control",
+                "style": "height:45px; border:none; border-radius:10px"
+            }
+        ),
+    )
 
+
+    # def save(self, commit=True):
+    #     user = super().save(commit=False)
+    #     user.is_superuser = False
+    #     user.email = self.cleaned_data['email']
+    #     user.set_password(self.cleaned_data["password1"])
+    #     if commit:
+    #         user.save()
+    #     return user
+
+    
     def save(self, commit=True):
         user = super().save(commit=False)
-        user.is_superuser = False
+
         user.email = self.cleaned_data['email']
         user.set_password(self.cleaned_data["password1"])
+
+       
         if commit:
             user.save()
+        user.groups.remove(*user.groups.all())
+        user.groups.add(self.cleaned_data["group"])
         return user

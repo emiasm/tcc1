@@ -26,6 +26,7 @@ class UserCreateView(AdminPermission,views.SuccessMessageMixin, generic.CreateVi
     success_url = reverse_lazy("users_listar")
     success_message = "Usuário cadastrado com sucesso!"
     template_name = "users/signup.html"
+    
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -41,6 +42,10 @@ class UserCreateView(AdminPermission,views.SuccessMessageMixin, generic.CreateVi
         Perfil.objects.create(usuario=self.object)
 
         return url
+
+    def form_invalid(self, form ):
+        print(form.errors)
+        return super().form_invalid(form)
 
 
 class UsersListView(AdminPermission,LoginRequiredMixin, FilterView):

@@ -16,3 +16,4 @@ class User(AbstractUser):
     last_name = None  # type: ignore
     data_adicao = models.DateTimeField(auto_now_add=True)
     
+    
