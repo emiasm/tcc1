@@ -8,7 +8,7 @@ from .forms import PerfilForm
 from django.shortcuts import get_object_or_404
 
 # Create your views here.
-
+from users.permissions import ACEPermission,ACSPermission,AdminPermission
 
 class PerfilUpdate(generic.UpdateView):
     template_name= 'perfil/form.html'

@@ -15,11 +15,12 @@ from .forms import UserRegistrationForm
 from django_filters.views import FilterView
 from .filters import UsersFilter
 
+from users.permissions import ACEPermission,ACSPermission,AdminPermission
 
 
 User = get_user_model()
 
-class UserCreateView(views.SuccessMessageMixin, generic.CreateView):
+class UserCreateView(AdminPermission,views.SuccessMessageMixin, generic.CreateView):
     model = User
     form_class = UserRegistrationForm
     success_url = reverse_lazy("users_listar")
@@ -42,7 +43,7 @@ class UserCreateView(views.SuccessMessageMixin, generic.CreateView):
         return url
 
 
-class UsersListView(LoginRequiredMixin, FilterView):
+class UsersListView(AdminPermission,LoginRequiredMixin, FilterView):
     model = User
     filterset_class = UsersFilter
     paginate_by = 4
@@ -56,7 +57,7 @@ class UsersListView(LoginRequiredMixin, FilterView):
 
         return context
 
-class UsersDeleteView(LoginRequiredMixin, generic.DeleteView):
+class UsersDeleteView(AdminPermission, LoginRequiredMixin, generic.DeleteView):
     model = User
     success_url = reverse_lazy("users_listar")
     template_name = "users/users_confirm_delete.html"
@@ -69,7 +70,7 @@ class UsersDeleteView(LoginRequiredMixin, generic.DeleteView):
         return context
 
 
-class ThirdUserUpdateView(LoginRequiredMixin, views.SuccessMessageMixin, UpdateView):
+class ThirdUserUpdateView(AdminPermission,LoginRequiredMixin, views.SuccessMessageMixin, UpdateView):
     model = User
     form_class = UserRegistrationForm
     success_url = reverse_lazy("users_listar")
@@ -83,7 +84,7 @@ class ThirdUserUpdateView(LoginRequiredMixin, views.SuccessMessageMixin, UpdateV
 
         return context
 
-class UserUpdateView(LoginRequiredMixin, views.SuccessMessageMixin, UpdateView):
+class UserUpdateView(AdminPermission,LoginRequiredMixin, views.SuccessMessageMixin, UpdateView):
     model = User
     form_class = UserRegistrationForm
     success_url = reverse_lazy("users_listar")
@@ -100,7 +101,7 @@ class UserUpdateView(LoginRequiredMixin, views.SuccessMessageMixin, UpdateView):
 
 
 
-class UserDetailView(LoginRequiredMixin, DetailView):
+class UserDetailView(AdminPermission,LoginRequiredMixin, DetailView):
     model = User
     slug_field = "id"
     slug_url_kwarg = "id"

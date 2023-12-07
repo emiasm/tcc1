@@ -13,7 +13,7 @@ from django.shortcuts import render,  get_object_or_404
 from perfil.models import Perfil
 
 
-
+from users.permissions import ACSPermission,AdminPermission
 class ImovelListView(LoginRequiredMixin, FilterView):
     model = Imovel
     # paginate_by=3
@@ -29,7 +29,7 @@ class ImovelListView(LoginRequiredMixin, FilterView):
 
  
 
-class ImovelDetailView(LoginRequiredMixin, generic.DetailView):
+class ImovelDetailView(ACSPermission,LoginRequiredMixin, generic.DetailView):
     model = Imovel
     template_name = "imovel/imovel_detalhe.html"
     def get_context_data(self, **kwargs):
@@ -40,7 +40,7 @@ class ImovelDetailView(LoginRequiredMixin, generic.DetailView):
 
         return context
 
-class ImovelCreateView(LoginRequiredMixin, views.SuccessMessageMixin, generic.CreateView):
+class ImovelCreateView(ACSPermission,LoginRequiredMixin, views.SuccessMessageMixin, generic.CreateView):
   model = Imovel
   form_class = ImovelForm
   success_url = reverse_lazy("imovel_listar")
@@ -54,7 +54,7 @@ class ImovelCreateView(LoginRequiredMixin, views.SuccessMessageMixin, generic.Cr
 
         return context
   
-class ImovelDeleteView(LoginRequiredMixin, generic.DeleteView):
+class ImovelDeleteView(ACSPermission,LoginRequiredMixin, generic.DeleteView):
   model = Imovel
   success_url = reverse_lazy("imovel_listar")
   template_name = "imovel/imovel_confirm_delete.html"
@@ -66,7 +66,7 @@ class ImovelDeleteView(LoginRequiredMixin, generic.DeleteView):
 
         return context
   
-class ImovelUpdateView(LoginRequiredMixin, views.SuccessMessageMixin, generic.UpdateView):
+class ImovelUpdateView(ACSPermission,LoginRequiredMixin, views.SuccessMessageMixin, generic.UpdateView):
   model = Imovel
   form_class = ImovelForm
   success_url = reverse_lazy("imovel_listar")

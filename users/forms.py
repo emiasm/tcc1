@@ -3,6 +3,26 @@ from django.contrib.auth.forms import UserCreationForm
 
 from .models import User
 
+from django.forms import ModelChoiceField
+from django.contrib.auth import get_user_model, models
+from django.contrib.auth import forms as admin_forms
+
+class UserAdminCreationForm(admin_forms.UserCreationForm):
+    """
+    Form for User Creation in the Admin Area.
+    To change user signup, see UserSignupForm and UserSocialSignupForm.
+    """
+
+    group = ModelChoiceField(
+        queryset=models.Group.objects.all(),
+        required=True,
+        label=("Grupo de permissões"),
+        widget=forms.Select(
+            attrs={
+                "class": "form-control",
+            }
+        ),
+    )
 
 class UserRegistrationForm(UserCreationForm):
     email = forms.EmailField(max_length=254, help_text='Informe um endereço de e-mail válido.')
@@ -15,7 +35,13 @@ class UserRegistrationForm(UserCreationForm):
                 "class": "form-control",
                 "style": "height:45px; border:none; border-radius:10px"
             }),
+
+            # 'group' :forms.Select(attrs={
+            #     "class": "form-control",
+            #     "style": "height:45px; border:none; border-radius:10px"
+            # }),
         }
+ 
 
     name = forms.CharField(
         widget=forms.TextInput(attrs={

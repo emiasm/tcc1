@@ -6,6 +6,7 @@ from users.permissions import AdminPermission
 from .forms import MoradorForm
 from .models import Morador
 
+from users.permissions import ACEPermission,ACSPermission,AdminPermission
 
 class MoradorListView(LoginRequiredMixin, generic.ListView):
     model = Morador
@@ -14,23 +15,23 @@ class MoradorListView(LoginRequiredMixin, generic.ListView):
     
     
 
-class MoradorDetailView(LoginRequiredMixin, generic.DetailView):
+class MoradorDetailView(ACSPermission,AdminPermission,ACEPermission, LoginRequiredMixin, generic.DetailView):
     model = Morador
     template_name = "morador/morador_detalhe.html"
 
-class MoradorCreateView(LoginRequiredMixin, views.SuccessMessageMixin, generic.CreateView):
+class MoradorCreateView(ACSPermission,AdminPermission, LoginRequiredMixin, views.SuccessMessageMixin, generic.CreateView):
   model = Morador
   form_class = MoradorForm
   success_url = reverse_lazy("imovel_listar")
   success_message= 'Cadastrado com sucesso!'
   template_name = "morador/form.html"
 
-class MoradorDeleteView(LoginRequiredMixin, generic.DeleteView):
+class MoradorDeleteView(ACSPermission,AdminPermission,LoginRequiredMixin, generic.DeleteView):
   model = Morador
   success_url = reverse_lazy("imovel_listar")
   template_name = "morador/morador_confirm_delete.html"
   
-class MoradorUpdateView(LoginRequiredMixin, views.SuccessMessageMixin, generic.UpdateView):
+class MoradorUpdateView(ACSPermission,AdminPermission, LoginRequiredMixin, views.SuccessMessageMixin, generic.UpdateView):
   model = Morador
   form_class = MoradorForm
   success_url = reverse_lazy("imovel_listar")

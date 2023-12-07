@@ -12,6 +12,7 @@ from django_filters.views import FilterView
 from .filters import RuaFilter
 
 
+from users.permissions import ACEPermission,ACSPermission,AdminPermission
 
 
 class RuaListView(LoginRequiredMixin, FilterView):
@@ -31,7 +32,7 @@ class RuaDetailView(LoginRequiredMixin, generic.DetailView):
     model = Rua
     template_name = "rua/rua_detalhe.html"
 
-class RuaCreateView(LoginRequiredMixin, views.SuccessMessageMixin, generic.CreateView):
+class RuaCreateView(AdminPermission,LoginRequiredMixin, views.SuccessMessageMixin, generic.CreateView):
   model = Rua
   form_class = RuaForm
   success_url = reverse_lazy("rua_listar")
@@ -45,7 +46,7 @@ class RuaCreateView(LoginRequiredMixin, views.SuccessMessageMixin, generic.Creat
 
         return context
 
-class RuaDeleteView(LoginRequiredMixin, generic.DeleteView):
+class RuaDeleteView(AdminPermission,LoginRequiredMixin, generic.DeleteView):
   model = Rua
   success_url = reverse_lazy("rua_listar")
   template_name = "rua/rua_confirm_delete.html"
@@ -57,7 +58,7 @@ class RuaDeleteView(LoginRequiredMixin, generic.DeleteView):
 
         return context
   
-class RuaUpdateView(LoginRequiredMixin, views.SuccessMessageMixin, generic.UpdateView):
+class RuaUpdateView(AdminPermission,LoginRequiredMixin, views.SuccessMessageMixin, generic.UpdateView):
   model = Rua
   form_class = RuaForm
   success_url = reverse_lazy("rua_listar")

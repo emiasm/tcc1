@@ -12,6 +12,8 @@ from users.models import User
 from django_filters.views import FilterView
 from .filters import BairroFilter
 
+from users.permissions import ACEPermission,ACSPermission,AdminPermission
+
 class BairroListView(LoginRequiredMixin, FilterView):
   model = Bairro
   paginate_by=5
@@ -37,7 +39,7 @@ class BairroDetailView(LoginRequiredMixin, generic.DetailView):
 
         return context
 
-class BairroCreateView(LoginRequiredMixin, views.SuccessMessageMixin, generic.CreateView):
+class BairroCreateView(AdminPermission,LoginRequiredMixin, views.SuccessMessageMixin, generic.CreateView):
   model = Bairro
   form_class = BairroForm
   success_url = reverse_lazy("bairro_listar")
@@ -51,7 +53,7 @@ class BairroCreateView(LoginRequiredMixin, views.SuccessMessageMixin, generic.Cr
 
         return context
   
-class BairroDeleteView(LoginRequiredMixin, generic.DeleteView):
+class BairroDeleteView(AdminPermission,LoginRequiredMixin, generic.DeleteView):
   model = Bairro
   success_url = reverse_lazy("bairro_listar")
   template_name = "bairro/bairro_confirm_delete.html"
@@ -63,7 +65,7 @@ class BairroDeleteView(LoginRequiredMixin, generic.DeleteView):
 
         return context
   
-class BairroUpdateView(LoginRequiredMixin, views.SuccessMessageMixin, generic.UpdateView):
+class BairroUpdateView(AdminPermission,LoginRequiredMixin, views.SuccessMessageMixin, generic.UpdateView):
   model = Bairro
   form_class = BairroForm
   success_url = reverse_lazy("bairro_listar")
