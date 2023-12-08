@@ -11,7 +11,7 @@ from django.shortcuts import render,  get_object_or_404
 from perfil.models import Perfil
 from users.models import User
 
-from users.permissions import ACEPermission,ACSPermission 
+from users.permissions import ACSADMINPermission,ACSACEADMINPermission
 
 
 class Visita2ListView(LoginRequiredMixin, FilterView):
@@ -27,7 +27,7 @@ class Visita2ListView(LoginRequiredMixin, FilterView):
 
         return context
 
-class Visita2DetailView(ACSPermission, LoginRequiredMixin, generic.DetailView):
+class Visita2DetailView(ACSACEADMINPermission, LoginRequiredMixin, generic.DetailView):
     model = Visita2
     template_name = "visita2/visita2_detalhe.html"
     def get_context_data(self, **kwargs):
@@ -38,7 +38,7 @@ class Visita2DetailView(ACSPermission, LoginRequiredMixin, generic.DetailView):
 
         return context
 
-class Visita2CreateView(ACSPermission, LoginRequiredMixin, views.SuccessMessageMixin, generic.CreateView):
+class Visita2CreateView(ACSADMINPermission, LoginRequiredMixin, views.SuccessMessageMixin, generic.CreateView):
   model = Visita2
   form_class = Visita2Form
   success_url = reverse_lazy("visita2_listar")
@@ -52,7 +52,7 @@ class Visita2CreateView(ACSPermission, LoginRequiredMixin, views.SuccessMessageM
 
         return context
   
-class Visita2DeleteView(ACSPermission, LoginRequiredMixin, generic.DeleteView):
+class Visita2DeleteView(ACSADMINPermission, LoginRequiredMixin, generic.DeleteView):
   model = Visita2
   success_url = reverse_lazy("visita2_listar")
   template_name = "visita2/visita2_confirm_delete.html"
@@ -64,7 +64,7 @@ class Visita2DeleteView(ACSPermission, LoginRequiredMixin, generic.DeleteView):
 
         return context
   
-class Visita2UpdateView(ACSPermission, ACEPermission, LoginRequiredMixin, views.SuccessMessageMixin, generic.UpdateView):
+class Visita2UpdateView(ACSACEADMINPermission, LoginRequiredMixin, views.SuccessMessageMixin, generic.UpdateView):
   model = Visita2
   form_class = Visita2Form
   success_url = reverse_lazy("visita2_listar")

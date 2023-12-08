@@ -8,7 +8,6 @@ from .forms import PerfilForm
 from django.shortcuts import get_object_or_404
 
 # Create your views here.
-from users.permissions import ACEPermission,ACSPermission,AdminPermission
 
 class PerfilUpdate(generic.UpdateView):
     template_name= 'perfil/form.html'
@@ -25,6 +24,7 @@ class PerfilUpdate(generic.UpdateView):
 
         return context
 
+
     def get_object(self,queryset=None):
         self.object = get_object_or_404(Perfil,usuario=self.request.user)
         return self.object
@@ -38,9 +38,15 @@ class PerfilUpdate(generic.UpdateView):
 class ProfileView(generic.ListView):
     model= User
     template_name = "registration/profile.html"
+
+
+    def get_object(self, queryset=None):
+        # Retorna o perfil do usuário logado
+        return self.request.user.usuario
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["logged_user"] = self.request.user
+        context['grupo_usuario'] = self.request.user.groups.first()
         context["logged_user_perfil"] = self.object = get_object_or_404(Perfil,usuario=self.request.user)
         context["users_number"] = User.objects.exclude(is_superuser=True).exclude(email="deleted").count()
 

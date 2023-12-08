@@ -12,7 +12,7 @@ from users.models import User
 from django_filters.views import FilterView
 from .filters import BairroFilter
 
-from users.permissions import ACEPermission,ACSPermission,AdminPermission
+from users.permissions import AdminPermission
 
 class BairroListView(LoginRequiredMixin, FilterView):
   model = Bairro
@@ -28,7 +28,7 @@ class BairroListView(LoginRequiredMixin, FilterView):
         return context
   
 
-class BairroDetailView(LoginRequiredMixin, generic.DetailView):
+class BairroDetailView(AdminPermission,LoginRequiredMixin, generic.DetailView):
   model = Bairro
   template_name = "bairro/bairro_detalhe.html"
   def get_context_data(self, **kwargs):
@@ -79,24 +79,7 @@ class BairroUpdateView(AdminPermission,LoginRequiredMixin, views.SuccessMessageM
 
         return context
 
-def filtro_bairros(request):
-    termo_bairro = request.GET.get('termo_bairro', '')
-    ordenacao = request.GET.get('ordenacao', 'mais_recente')  # Padrão para ordenação mais recente
 
-    if ordenacao == 'mais_antigo':
-        bairros = Bairro.objects.order_by('data_adicao')
-    else:
-        bairros = Bairro.objects.order_by('-data_adicao')
-
-    if termo_bairro:
-        bairros = bairros.filter(nome__icontains=termo_bairro)
-
-
-    return render(request, 'bairro/filter_bairro.html', {
-        'bairros': bairros,
-        'termo_bairro': termo_bairro,
-        'ordenacao': ordenacao,
-    })
   
 
 

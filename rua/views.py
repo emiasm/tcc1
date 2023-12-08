@@ -12,7 +12,7 @@ from django_filters.views import FilterView
 from .filters import RuaFilter
 
 
-from users.permissions import ACEPermission,ACSPermission,AdminPermission
+from users.permissions import AdminPermission
 
 
 class RuaListView(LoginRequiredMixin, FilterView):
@@ -28,7 +28,7 @@ class RuaListView(LoginRequiredMixin, FilterView):
 
         return context
 
-class RuaDetailView(LoginRequiredMixin, generic.DetailView):
+class RuaDetailView(AdminPermission,LoginRequiredMixin, generic.DetailView):
     model = Rua
     template_name = "rua/rua_detalhe.html"
 
@@ -72,30 +72,6 @@ class RuaUpdateView(AdminPermission,LoginRequiredMixin, views.SuccessMessageMixi
 
         return context
 
-# def filtro_rua(request):
-#     termo_rua = request.GET.get('termo_rua', '')
-#     ruas = Rua.objects.order_by('nome')
-
-#     if termo_rua:
-#         ruas = ruas.filter(nome__icontains=termo_rua)
-
-#     return render(request, 'rua/filter_rua.html', {'ruas': ruas, 'termo_rua': termo_rua})
-
-def filtro_rua(request):
-    termo_rua = request.GET.get('termo_rua', '')
-    ordenacao = request.GET.get('ordenacao', 'mais_recente')  # Padrão para ordenação mais recente
-
-    if ordenacao == 'mais_antigo':
-        ruas = Rua.objects.order_by('data_adicao')
-    else:
-        ruas = Rua.objects.order_by('-data_adicao')
-
-    if termo_rua:
-        ruas = ruas.filter(nome__icontains=termo_rua)
 
 
-    return render(request, 'rua/filter_rua.html', {
-        'ruas': ruas,
-        'termo_rua': termo_rua,
-        'ordenacao': ordenacao,
-    })
+

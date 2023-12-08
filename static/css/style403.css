@@ -1,20 +1,11 @@
 
 
-
 * {
   position: relative;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
-}
-
-#bt1 {
-    font-size: 17px;
-    background-color: #14757B;
   
-    color: white;
-    width: 180px;
 }
 
 body {
@@ -23,15 +14,11 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(to bottom right, #eee, #B4CFD0);
+  background: linear-gradient(to bottom right, #EEE, #AAA);
 }
 
 h1 {
   margin: 40px 0 20px;
 }
-
-
-
-   
 
 

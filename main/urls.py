@@ -23,8 +23,8 @@ from imovel.views import ImovelCreateView,ImovelDeleteView,ImovelDetailView,Imov
 from visita1.views import Visita1CreateView,Visita1DeleteView,Visita1DetailView,Visita1ListView,Visita1UpdateView
 from morador.views import MoradorCreateView, MoradorDeleteView, MoradorDetailView, MoradorListView,MoradorUpdateView
 from visita2.views import Visita2CreateView,Visita2DeleteView,Visita2DetailView,Visita2ListView,Visita2UpdateView
-from bairro.views import BairroCreateView,BairroDeleteView,BairroDetailView,BairroListView,BairroUpdateView,filtro_bairros
-from rua.views import RuaCreateView,RuaDeleteView,RuaDetailView,RuaListView,RuaUpdateView,filtro_rua
+from bairro.views import BairroCreateView,BairroDeleteView,BairroDetailView,BairroListView,BairroUpdateView
+from rua.views import RuaCreateView,RuaDeleteView,RuaDetailView,RuaListView,RuaUpdateView
 from perfil.views import PerfilUpdate,ProfileView
 from django.conf.urls.static import static
 from django.conf import settings
@@ -77,14 +77,14 @@ urlpatterns = [
     path('bairro/editar/<int:pk>/',BairroUpdateView.as_view(), name='bairro_editar'),
     path('bairro/remover/<int:pk>/',BairroDeleteView.as_view(), name='bairro_remover'),
     path('bairro/listar/', BairroListView.as_view(), name='bairro_listar'),
-    path('filtro_bairros/', filtro_bairros, name='filtro_bairros'),
+    # path('filtro_bairros/', filtro_bairros, name='filtro_bairros'),
 
     path('rua/', RuaCreateView.as_view(), name='rua_criar'),
     path('rua/detalhe/<int:pk>/',RuaDetailView.as_view(), name='rua_detalhe'),
     path('rua/editar/<int:pk>/',RuaUpdateView.as_view(), name='rua_editar'),
     path('rua/remover/<int:pk>/',RuaDeleteView.as_view(), name='rua_remover'),
     path('rua/listar/', RuaListView.as_view(), name='rua_listar'),
-    path('filtro_ruas/', filtro_rua, name='filtro_ruas'),
+    # path('filtro_ruas/', filtro_rua, name='filtro_ruas'),
 
     path("users/password_change/", PasswordChangeView.as_view(), name="password_change"),
     path("users/password_change/done/",PasswordChangeDoneView.as_view(), name="password_change_done",),

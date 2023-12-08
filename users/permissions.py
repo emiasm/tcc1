@@ -7,7 +7,7 @@ class AdminPermission(UserPassesTestMixin):
             return True
         return False
 
-class MoradorPermission(UserPassesTestMixin):
+class ACSADMINPermission(UserPassesTestMixin):
     def test_func(self):
         if self.request.user.groups.filter(name="Administrador"):
             return True
@@ -16,6 +16,25 @@ class MoradorPermission(UserPassesTestMixin):
 
         return False
 
+class ACSACEADMINPermission(UserPassesTestMixin):
+    def test_func(self):
+        if self.request.user.groups.filter(name="Agente de Endemias"):
+            return True
+        elif self.request.user.groups.filter(name="Agente de Saúde"):
+            return True
+        elif self.request.user.groups.filter(name="Administrador"):
+            return True
+
+        return False
+
+class ACEAdminPermission(UserPassesTestMixin):
+    def test_func(self):
+        if self.request.user.groups.filter(name="Agente de Endemias"):
+            return True
+        elif self.request.user.groups.filter(name="Agente de Saúde"):
+            return True
+
+        return False
 
 
 class ACEPermission(UserPassesTestMixin):

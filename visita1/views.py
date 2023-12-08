@@ -11,7 +11,8 @@ from django.shortcuts import render,  get_object_or_404
 from perfil.models import Perfil
 from users.models import User
 
-from users.permissions import ACEPermission,ACSPermission,AdminPermission
+from users.permissions import ACEAdminPermission,ACSACEADMINPermission
+   
 
 class Visita1ListView(LoginRequiredMixin, FilterView):
     model = Visita1
@@ -26,7 +27,7 @@ class Visita1ListView(LoginRequiredMixin, FilterView):
 
         return context
 
-class Visita1DetailView(AdminPermission,ACEPermission,ACSPermission,LoginRequiredMixin, generic.DetailView):
+class Visita1DetailView(ACSACEADMINPermission,LoginRequiredMixin, generic.DetailView):
     model = Visita1
     template_name = "visita1/visita1_detalhe.html"
     def get_context_data(self, **kwargs):
@@ -37,7 +38,7 @@ class Visita1DetailView(AdminPermission,ACEPermission,ACSPermission,LoginRequire
 
         return context
 
-class Visita1CreateView(ACEPermission,LoginRequiredMixin, views.SuccessMessageMixin, generic.CreateView):
+class Visita1CreateView(ACEAdminPermission,LoginRequiredMixin, views.SuccessMessageMixin, generic.CreateView):
   model = Visita1
   form_class = Visita1Form
   success_url = reverse_lazy("visita1_listar")
@@ -51,7 +52,7 @@ class Visita1CreateView(ACEPermission,LoginRequiredMixin, views.SuccessMessageMi
 
         return context
   
-class Visita1DeleteView(ACEPermission,LoginRequiredMixin, generic.DeleteView):
+class Visita1DeleteView(ACEAdminPermission,LoginRequiredMixin, generic.DeleteView):
   model = Visita1
   success_url = reverse_lazy("visita1_listar")
   template_name = "visita1/visita1_confirm_delete.html"
@@ -63,7 +64,7 @@ class Visita1DeleteView(ACEPermission,LoginRequiredMixin, generic.DeleteView):
 
         return context
   
-class Visita1UpdateView(ACEPermission,ACSPermission,LoginRequiredMixin, views.SuccessMessageMixin, generic.UpdateView):
+class Visita1UpdateView(ACSACEADMINPermission,LoginRequiredMixin, views.SuccessMessageMixin, generic.UpdateView):
   model = Visita1
   form_class = Visita1Form
   success_url = reverse_lazy("visita1_listar")

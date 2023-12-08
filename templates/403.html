@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base2.html" %}
 {% load static %}
 {% block title %}Error (403){% endblock %}
 
@@ -9,16 +9,18 @@
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/style403.css' %}">
 
+
+
+<div class="lock"></div>
 <div class="message">
    
   <h1>O acesso a esta página é restrito</h1>
   <p>Por favor, verifique com o administrador do site se você acredita que isso é um erro.</p>
 </div> 
 
-<div class="col-md-10">
-    
-    <a class="btn" id="bt1" href="javascript:history.back()">Voltar</a>
-</div>
-
-
+<div class="btn-back">
+      <a class="btn  btn-lg" style = ''id="bt1" href="javascript:history.back()">Voltar</a>
+{% comment %} </div>
+  <p class="contact-admin">Se o problema persistir, entre em contato com o <a href="mailto:naoresponder.arbomap@gmail.com">administrador do site</a>.</p>
+</div> {% endcomment %}
 {% endblock content %}

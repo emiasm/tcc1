@@ -15,7 +15,7 @@ from .forms import UserRegistrationForm
 from django_filters.views import FilterView
 from .filters import UsersFilter
 
-from users.permissions import ACEPermission,ACSPermission,AdminPermission
+from users.permissions import AdminPermission
 
 
 User = get_user_model()
