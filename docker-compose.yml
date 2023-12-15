@@ -3,6 +3,7 @@ version: '3'
 volumes:
   static_volume: {}
   data_volume: {}
+  media_volume: {}
 
 services:
   django: &django
@@ -11,6 +12,7 @@ services:
       dockerfile: ./compose/django/Dockerfile
     volumes:
       - static_volume:/home/app/staticfiles
+      - media_volume:/home/app/media
     command: /start
     depends_on:
       - postgres
@@ -21,6 +23,7 @@ services:
       dockerfile: ./compose/nginx/Dockerfile
     volumes:
       - static_volume:/home/app/staticfiles
+      - media_volume:/home/app/media
     ports:
       - 83:80
     depends_on:
