@@ -27,6 +27,7 @@ class HomeView(LoginRequiredMixin, generic.TemplateView):
         
         context = super().get_context_data(**kwargs)
         
+        #ARBOVIROSES POR BAIRRO
         # Código para o gráfico de barras por bairro
         bairros_distintos = Visita2.objects.values_list('imovel__bairro__nome', flat=True).distinct()
         contagens_por_bairro = defaultdict(lambda: defaultdict(int))
@@ -50,6 +51,8 @@ class HomeView(LoginRequiredMixin, generic.TemplateView):
         context['total_zika'] = total_zika
         context['total_chikungunya'] = total_chikungunya
         
+
+        # GRAFICO DE PIZZA PARA OS FOCOS
         # Cálculo da contagem de cada tipo de foco
         total_visitas = Visita1.objects.count()
         contagem_focos = (
@@ -70,6 +73,8 @@ class HomeView(LoginRequiredMixin, generic.TemplateView):
         context["logged_user_perfil"] = get_object_or_404(Perfil, usuario=self.request.user)
         context["users_number"] = User.objects.exclude(is_superuser=True).exclude(email="deleted").count()
 
+
+        # GRAFICO DE LINHA PARA ARBOVIROSES POR TEMPO
         # Código para gráfico de contagem mensal
         data = Visita2.objects.annotate(
             month=TruncMonth('data_visita')
@@ -91,34 +96,6 @@ class HomeView(LoginRequiredMixin, generic.TemplateView):
         context['data_dengue_hemorragica'] = data_dengue_hemorragica
         context['data_zika'] = data_zika
         context['data_chikungunya'] = data_chikungunya
-
-        
-       
-        # Código para os outros gráficos...
-        # ... (códigos dos outros gráficos)
-
-        # Código para o gráfico de pizza
-        visitas = Visita2.objects.all()
-        dengue_count = visitas.filter(dengue=True).count()
-        dengue_hemorragica_count = visitas.filter(dengue_hemorragica=True).count()
-        zika_count = visitas.filter(zika=True).count()
-        chikungunya_count = visitas.filter(chikungunya=True).count()
-
-        sizes = [dengue_count, dengue_hemorragica_count, zika_count, chikungunya_count]
-        labels = ['Dengue', 'Dengue Hemorrágica', 'Zika', 'Chikungunya']
-        colors = ["#022F32", "#02565B", "#0E7981", "#2C9EA6"]
-
-        total = sum(sizes)
-        percentages = [(size / total) * 100 for size in sizes]
-
-        chart_data = {
-            'labels': labels,
-            'percentages': percentages,
-            'sizes': sizes,
-            'colors': colors,
-        }
-
-        context['chart_data'] = chart_data
 
         return context
 

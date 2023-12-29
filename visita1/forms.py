@@ -34,10 +34,6 @@ class Visita1Form(forms.ModelForm):
                 "class": "form-control",
                 "style": "height:45px; border:none; border-radius:10px"
             }),
-            'data_visita': forms.TextInput(attrs={
-                "class": "form-control",
-                "style": "height:45px; border:none; border-radius:10px"
-            }),
         }
         
     imovel = forms.ModelChoiceField(
@@ -46,6 +42,14 @@ class Visita1Form(forms.ModelForm):
         required=True,
         widget=forms.Select(attrs={
             "class": "form-control",
+            "style": "height:45px; border:none; border-radius:10px"
+        })
+    )
+
+    data_visita = forms.DateField(
+        widget=forms.DateInput(attrs={
+            "type": "date",
+           "class": "form-control",
             "style": "height:45px; border:none; border-radius:10px"
         })
     )

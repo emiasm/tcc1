@@ -185,39 +185,3 @@
     });
 </script>
 {% endblock %}
-
-{% comment %} <canvas id="arbovirosesChart" width="400" height="400"></canvas>
-<script>
-      const data = {{ chart_data | safe }};
-      const ctx = document.getElementById('arbovirosesChart').getContext('2d');
-      const myChart = new Chart(ctx, {
-          type: 'pie',
-          data: {
-              labels: data.labels,   
-              datasets: [{
-                  data: data.percentages,
-                  backgroundColor: [
-                    "#022F32", // Cor para Dengue
-                    "#02565B", // Cor para Dengue Hemorrágica
-                    "#0E7981", // Cor para Zika
-                    "#2C9EA6", // Cor para Chikungunya
-                  ],
-
-                  borderWidth: 1
-              }]
-          },
-          options: {
-              tooltips: {
-                  callbacks: {
-                      label: function(tooltipItem, data) {
-                          const dataset = data.datasets[tooltipItem.datasetIndex];
-                          const currentValue = dataset.data[tooltipItem.index];
-                          const total = dataset.data.reduce((previousValue, currentValue) => previousValue + currentValue);
-                          const percentage = Math.round((currentValue / total) * 100 * 10) / 10;
-                          return `${currentValue} (${percentage}%)`;
-                      }
-                  }
-              }
-          }
-      });
-  </script> {% endcomment %}

@@ -254,7 +254,7 @@
         
         <section class="modal-container-body rtf">
         {% csrf_token %}
-          <p>Tem certeza que deseja excluir a visita do morador "{{object.morador.nome}}" ?</p>
+          <p>Tem certeza que deseja excluir a visita do morador "{{object.imovel.morador.nome}}" ?</p>
           {{ form }}
           
     
