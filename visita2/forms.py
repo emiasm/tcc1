@@ -10,7 +10,7 @@ class Visita2Form(forms.ModelForm):
     class Meta:
         model = Visita2
         fields = (
-            "morador",
+            "imovel",
             "motivo_visita",
             "quantidade_pessoas",
             "pessoa_doente",
@@ -43,9 +43,9 @@ class Visita2Form(forms.ModelForm):
 
         }
         
-    morador = forms.ModelChoiceField(
-        queryset=Morador.objects.all(),
-        label="Morador",
+    imovel = forms.ModelChoiceField(
+        queryset=Imovel.objects.all(),
+        label="Imovel",
         required=True,
         widget=forms.Select(attrs={
             "class": "form-control",

@@ -11,7 +11,7 @@ TIPO_ESCOLHA=(
 )
 
 class Visita2 (models.Model):
-    morador = models.ForeignKey(Morador,on_delete=models.CASCADE)
+    imovel = models.ForeignKey(Imovel,on_delete=models.CASCADE)
     motivo_visita = models.CharField(max_length=MAX_CHAR_FIELD_NAME_LENGTH)
     quantidade_pessoas = models.IntegerField()
     pessoa_doente = models.CharField(max_length=SMALL_CHAR_FIELD_NAME_LENGTH, choices=TIPO_ESCOLHA)
@@ -28,4 +28,4 @@ class Visita2 (models.Model):
     data_adicao = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return f"{self.morador}"
+        return f"{self.imovel.morador}"

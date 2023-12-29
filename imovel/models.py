@@ -26,4 +26,4 @@ class Imovel (models.Model):
     data_adicao = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.tipo_propriedade} | {self.numero} | {self.rua} | {self.bairro}"
+        return f"{self.morador} | {self.tipo_propriedade} | {self.numero} | {self.rua} | {self.bairro}"

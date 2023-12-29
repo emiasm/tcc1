@@ -1,13 +1,14 @@
 from django import forms
 from .models import Visita1
 from morador.models import Morador
+from imovel.models import Imovel
 
 class Visita1Form(forms.ModelForm):
 
     class Meta:
         model = Visita1
         fields = (
-            "morador",
+            "imovel",
             "caixa_agua",
             "materiais_rodantes",
             "depositos_moveis",
@@ -39,9 +40,9 @@ class Visita1Form(forms.ModelForm):
             }),
         }
         
-    morador = forms.ModelChoiceField(
-        queryset=Morador.objects.all(),
-        label="Morador",
+    imovel = forms.ModelChoiceField(
+        queryset=Imovel.objects.all(),
+        label="Imovel",
         required=True,
         widget=forms.Select(attrs={
             "class": "form-control",

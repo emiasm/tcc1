@@ -30,8 +30,10 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
-    path('admin', admin.site.urls),
+    path('admin/', admin.site.urls),
     path('', HomeView.as_view(), name='index'),
+
+
     path('visitas/', VisitasView.as_view(), name='visitas'),
     path('logradouro/', LogradouroView.as_view(), name='logradouro'),
     path('users/profile/', ProfileView.as_view(), name='users_profile'),

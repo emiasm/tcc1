@@ -12,14 +12,14 @@ TIPO_ESCOLHA=(
 )
 
 TIPO_FOCOS=(
-	('Não há focos','Não há focos'),
-	('Tem água parada, mas sem a presença de mosquitos','Tem água parada, mas sem a presença de mosquitos'),
-    ('Água parada e presença de mosquitos','Água parada e presença de mosquitos'),
+	('Sem focos','Não há focos'),
+	('Água parada, sem mosquitos','Tem água parada, mas sem a presença de mosquitos'),
+    ('Água parada, com mosquitos','Água parada e presença de mosquitos'),
 )
 
 
 class Visita1 (models.Model):
-    morador = models.ForeignKey(Morador,on_delete=models.CASCADE)
+    imovel = models.ForeignKey(Imovel,on_delete=models.CASCADE)
 
     caixa_agua = models.BooleanField()
     materiais_rodantes = models.BooleanField()
@@ -36,4 +36,4 @@ class Visita1 (models.Model):
     data_adicao = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.morador}"
+        return f"{self.imovel.morador}"

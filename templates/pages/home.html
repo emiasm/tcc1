@@ -1,105 +1,223 @@
 {% extends 'base.html' %}
-{% block title %}Início{% endblock %}
+{% block title %}
+  Início
+{% endblock %}
 {% block content %}
-
-    <div class="mt-2">
-        <div class='row col-12 mb-4'>
-          <div class='col-12'>
-            <h5><strong style="color: #022f32">Visão Geral</strong></h5>
-            
+  <div class="container-fluid">
+    <h3 class="mb-5 mt-2" style="color:#022F32;"><strong>Dashboard</strong></h3>
+    <div class="row mt-2">
+      <div class="col-lg-4 mb-4">
+        <div class="card" style="height: 100%; border-radius: 10px; background-color: #D0E1E2; border: none;">
+          <div class="card-body" style="display: flex; flex-direction: column; justify-content: flex-start;">
+            <h6 class="card-title">Percentual de Focos</h6>
+            <canvas id="focosChart" class="chart" style="max-width: 100%; width: 305px; height: 305px;"></canvas>
           </div>
-        </div>
-        <div class="c-grafico d-flex align-items-center container-fluid justify-content-center mb-5">
-          <div class="row col-12">
-            <div class="col-6">
-              <h6 class="text-center"><strong style="color: #022f32">Casos por Bairro</strong></h6>
-              <div class="m-auto d-flex align-items-center justify-content-around" id="gp1">
-
-
-                <canvas class="" id="myChart1" style="width: 100%; max-width: 500px"></canvas>
-
-                <script>
-                  var xValues = [
-                    "Bairro A", "Bairro B", "Bairro C", "Bairro D", "Bairro E"
-                  ];
-                  var yValues = [32, 22, 18, 16, 12];
-                  var barColors = [
-                    "#022F32",
-                    "#02565B",
-                    "#0E7981",
-                    "#2C9EA6",
-                    "#6BBBC0",
-                  ];
-
-                  new Chart("myChart1", {
-                    type: "pie",
-                    data: {
-                      labels: xValues,
-                      datasets: [
-                        {
-                          backgroundColor: barColors,
-                          data: yValues,
-                        },
-                      ],
-                    },
-                  });
-                </script>
-
-              </div>
-            </div>
-            <div class="col-6 ">
-              <h6 class="text-center"><strong style="color: #022f32">Tipos de Arboviroses</strong></h6>
-              <div class="m-auto d-flex align-items-center justify-content-around" id="gp2">
-
-
-                <canvas class="" id="myChart2" style="width: 100%; max-width: 500px;"></canvas>
-
-                <script>
-                  var xValues = [
-                    "Bairro A", "Bairro B", "Bairro C", "Bairro D", "Bairro E"
-                  ];
-                  var yValues = [32, 22, 18, 16, 12];
-                  var barColors = [
-                    "#022F32",
-                    "#02565B",
-                    "#0E7981",
-                    "#2C9EA6",
-                    "#6BBBC0",
-                  ];
-
-                  new Chart("myChart2", {
-                    type: "pie",
-                    data: {
-                      labels: xValues,
-                      datasets: [
-                        {
-                          backgroundColor: barColors,
-                          data: yValues,
-                        },
-                      ],
-                    },
-                  });
-                </script>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="table-responsive">
-          <table class="table table-striped table-borderless">
-            <thead>
-              <tr class="text-center">
-                <th scope="col">Bairros</th>
-                <th scope="col">Casos em Incidência</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="text-center">
-                <td>São Benedito</td>
-                <td>50 casos</td>
-              </tr>
-            </tbody>
-          </table>
         </div>
       </div>
+      <div class="col-lg-8 mb-4">
+        <div class="card" style="height: 100%; border-radius: 10px; background-color: #D0E1E2; border: none;">
+          <div class="card-body" style="display: flex; flex-direction: column; justify-content: flex-start;">
+            <h6 class="card-title">Comparativo de Ocorrências de Arboviroses por Bairro</h6>
+            <canvas id="graficoBarras" class="chart" style="max-width: 100%;"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-lg-12 mb-4">
+        <div class="card" style="border-radius: 10px; background-color: #D0E1E2; border: none;">
+          <div class="card-body" style="text-align: left;">
+            <h6 class="card-title">Evolução Temporal das Ocorrências de Arboviroses</h6>
+            <canvas id="arbovirosesChart" class="chart" style="max-width: 100%;" height="200px" width="600px"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Código do gráfico de barras
+        var ctxBar = document.getElementById('graficoBarras').getContext('2d');
+        var myChart = new Chart(ctxBar, {
+            type: 'bar',
+            data: {
+                labels: {{ bairros | safe }},
+                datasets: [{
+                    label: 'Dengue',
+                    backgroundColor: "#022F32",
+                    borderWidth: 1,
+                    data: {{ total_dengue | safe }},
+                }, {
+                    label: 'Dengue Hemorrágica',
+                    backgroundColor: "#02565B",
+                    borderWidth: 1,
+                    data: {{ total_dengue_hemorragica | safe }},
+                }, {
+                    label: 'Zika',
+                    backgroundColor: "#0E7981",
+                    borderWidth: 1,
+                    data: {{ total_zika | safe }},
+                }, {
+                    label: 'Chikungunya',
+                    backgroundColor: '#2C9EA6',
+                    borderWidth: 1,
+                    data: {{ total_chikungunya | safe }},
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        ticks: {
+                            callback: function (value, index, values) {
+                                if (Number.isInteger(value)) {
+                                    return value;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Código do gráfico de pizza
+        var ctxPie = document.getElementById('focosChart').getContext('2d');
+        var porcentagens = {{ porcentagens | safe }};
+
+        var chart = new Chart(ctxPie, {
+            type: 'pie',
+            data: {
+                labels: Object.keys(porcentagens),
+                datasets: [{
+                    label: '%',
+                    backgroundColor: [
+                        "#022F32",
+                        "#02565B",
+                        "#0E7981"
+                    ],
+                    data: Object.values(porcentagens),
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                // Suas opções do gráfico de pizza aqui
+            }
+        });
+
+        // Código do gráfico de linha
+        const labels = {{ labels|safe }};
+        const data_dengue = {{ data_dengue|safe }};
+        const data_dengue_hemorragica = {{ data_dengue_hemorragica|safe }};
+        const data_zika = {{ data_zika|safe }};
+        const data_chikungunya = {{ data_chikungunya|safe }};
+
+        const meses = [
+            'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+            'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+        ];
+
+        const ctxLine = document.getElementById('arbovirosesChart').getContext('2d');
+        new Chart(ctxLine, {
+            type: 'line',
+            data: {
+                labels: labels.map(dateString => {
+                    const date = new Date(dateString);
+                    return meses[date.getMonth()] + ' ' + date.getFullYear();
+                }),
+                datasets: [
+                    {
+                        label: 'Dengue',
+                        data: data_dengue.map(num => parseInt(num)),
+                        borderColor: '#022F32',
+                        borderWidth: 1,
+                        fill: false
+                    },
+                    {
+                        label: 'Dengue Hemorrágica',
+                        data: data_dengue_hemorragica.map(num => parseInt(num)),
+                        borderColor: '#02565B',
+                        borderWidth: 1,
+                        fill: false
+                    },
+                    {
+                        label: 'Zika',
+                        data: data_zika.map(num => parseInt(num)),
+                        borderColor: '#0E7981',
+                        borderWidth: 1,
+                        fill: false
+                    },
+                    {
+                        label: 'Chikungunya',
+                        data: data_chikungunya.map(num => parseInt(num)),
+                        borderColor: '#2C9EA6',
+                        borderWidth: 1,
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Tempo'
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            callback: function (value) {
+                                return Number.isInteger(value) ? value.toLocaleString('pt-BR', { maximumFractionDigits: 0 }) : '';
+                            },
+                            precision: 0
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Quantidade de Casos'
+                        }
+                    }]
+                }
+            }
+        });
+    });
+</script>
 {% endblock %}
+
+{% comment %} <canvas id="arbovirosesChart" width="400" height="400"></canvas>
+<script>
+      const data = {{ chart_data | safe }};
+      const ctx = document.getElementById('arbovirosesChart').getContext('2d');
+      const myChart = new Chart(ctx, {
+          type: 'pie',
+          data: {
+              labels: data.labels,   
+              datasets: [{
+                  data: data.percentages,
+                  backgroundColor: [
+                    "#022F32", // Cor para Dengue
+                    "#02565B", // Cor para Dengue Hemorrágica
+                    "#0E7981", // Cor para Zika
+                    "#2C9EA6", // Cor para Chikungunya
+                  ],
+
+                  borderWidth: 1
+              }]
+          },
+          options: {
+              tooltips: {
+                  callbacks: {
+                      label: function(tooltipItem, data) {
+                          const dataset = data.datasets[tooltipItem.datasetIndex];
+                          const currentValue = dataset.data[tooltipItem.index];
+                          const total = dataset.data.reduce((previousValue, currentValue) => previousValue + currentValue);
+                          const percentage = Math.round((currentValue / total) * 100 * 10) / 10;
+                          return `${currentValue} (${percentage}%)`;
+                      }
+                  }
+              }
+          }
+      });
+  </script> {% endcomment %}
