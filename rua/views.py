@@ -18,7 +18,7 @@ from users.permissions import AdminPermission
 class RuaListView(LoginRequiredMixin, FilterView):
     model = Rua
     filterset_class = RuaFilter
-    paginate_by=5
+    paginate_by=10 
     template_name = "rua/ruas.html"
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

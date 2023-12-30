@@ -16,7 +16,7 @@ from users.permissions import AdminPermission
 
 class BairroListView(LoginRequiredMixin, FilterView):
   model = Bairro
-  paginate_by=5
+  paginate_by=10
   filterset_class = BairroFilter
   template_name = "bairro/bairros.html"
   def get_context_data(self, **kwargs):

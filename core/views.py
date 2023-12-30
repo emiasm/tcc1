@@ -7,7 +7,7 @@ from perfil.models import Perfil
 from visita2.models import Visita2
 import json
 from visita1.models import Visita1
-import matplotlib.pyplot as plt
+
 from django.db.models.functions import TruncMonth
 import os
 import io

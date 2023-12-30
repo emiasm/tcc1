@@ -16,7 +16,7 @@ from users.permissions import ACEAdminPermission,ACSACEADMINPermission
 
 class Visita1ListView(LoginRequiredMixin, FilterView):
     model = Visita1
-    paginate_by=2
+    paginate_by=10
     filterset_class = Visita1Filter
     template_name = "visita1/visitas.html"
     def get_context_data(self, **kwargs):
